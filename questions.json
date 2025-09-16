@@ -1,0 +1,106 @@
+ {
+    "javascript": [
+        {
+            "question": "Quel mot-clé est utilisé pour déclarer une variable en JavaScript ?",
+            "options": ["var", "let", "const", "all of the above"],
+            "answer": 3
+        },
+        {
+            "question": "Quelle méthode est utilisée pour afficher un message dans la console ?",
+            "options": ["print()", "console.log()", "echo()", "alert()"],
+            "answer": 1
+        },
+        {
+            "question": "Quel type de langage est JavaScript ?",
+            "options": ["Compilé", "Interprété", "Binaire", "Assembleur"],
+            "answer": 1
+        },
+        {
+            "question": "Comment écrire un commentaire sur une seule ligne en JavaScript ?",
+            "options": ["<!-- commentaire -->", "// commentaire", "/* commentaire */", "# commentaire"],
+            "answer": 1
+        },
+        {
+            "question": "Quelle fonction convertit une chaîne en entier ?",
+            "options": ["parseInt()", "parseFloat()", "Number()", "toInteger()"],
+            "answer": 0
+        },
+        {
+            "question": "Quelle valeur est retournée par `typeof null` ?",
+            "options": ["null", "undefined", "object", "boolean"],
+            "answer": 2
+        },
+        {
+            "question": "Quelle boucle est utilisée pour parcourir un tableau ?",
+            "options": ["for", "while", "foreach", "for...of"],
+            "answer": 3
+        },
+        {
+            "question": "Quelle méthode permet d’ajouter un élément à la fin d’un tableau ?",
+            "options": ["push()", "pop()", "shift()", "unshift()"],
+            "answer": 0
+        },
+        {
+            "question": "Quelle méthode transforme un JSON en objet JavaScript ?",
+            "options": ["JSON.parse()", "JSON.stringify()", "JSON.object()", "parse.JSON()"],
+            "answer": 0
+        },
+        {
+            "question": "Que retournera `2 == '2'` en JavaScript ?",
+            "options": ["true", "false", "error", "undefined"],
+            "answer": 0
+        }
+    ],
+    "HTML": [
+        {
+            "question": "Quel élément HTML est utilisé pour définir le titre d'une page web ?",
+            "options": ["<header>", "<title>", "<head>", "<h1>"],
+            "answer": 1
+        },
+        {
+            "question": "Quel attribut est utilisé pour spécifier l'URL d'un lien dans une balise <a> ?",
+            "options": ["src", "href", "link", "url"],
+            "answer": 1
+        },
+        {
+            "question": "Quelle balise HTML est utilisée pour insérer une image ?",
+            "options": ["<img>", "<image>", "<picture>", "<src>"],
+            "answer": 0
+        },
+        {
+            "question": "Quel élément HTML est utilisé pour créer une liste non ordonnée ?",
+            "options": ["<ol>", "<ul>", "<li>", "<list>"],
+            "answer": 1
+        },
+        {
+            "question": "Quel attribut est utilisé pour définir le texte alternatif d'une image ?",
+            "options": ["alt", "title", "src", "description"],
+            "answer": 0
+        },
+        {
+            "question": "Quelle balise HTML est utilisée pour créer un paragraphe ?",
+            "options": ["<p>", "<para>", "<text>", "<paragraph>"],
+            "answer": 0
+        },
+        {
+            "question": "Quel élément HTML est utilisé pour insérer une ligne horizontale ?",
+            "options": ["<line>", "<hr>", "<br>", "<horizontal>"],
+            "answer": 1
+        },
+        {
+            "question": "Quel attribut est utilisé pour spécifier la langue d'un document HTML ?",
+            "options": ["lang", "language", "locale", "dir"],
+            "answer": 0
+        },
+        {
+            "question": "Quelle balise HTML est utilisée pour créer un tableau ?",
+            "options": ["<table>", "<tab>", "<tr>", "<td>"],
+            "answer": 0
+        },
+        {
+            "question": "Quel élément HTML est utilisé pour insérer un saut de ligne ?",
+            "options": ["<break>", "<br>", "<newline>", "<lb>"],
+            "answer": 1
+        }
+    ]
+}
