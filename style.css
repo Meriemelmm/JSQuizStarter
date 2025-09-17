@@ -148,11 +148,11 @@ h2{
   margin-top:0rem;
 }
 .wrong{
-     border: 0.5px solid var(--success); 
+     border: 0.5px solid var(--error); 
      width:90%;
 }
 .correct{
-     border: 0.5px solid var(--error); 
+     border: 0.5px solid var(--success); 
      width:90%;
 
 }
