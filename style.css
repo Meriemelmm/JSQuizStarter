@@ -149,9 +149,11 @@ h2{
 }
 .wrong{
      border: 0.5px solid var(--success); 
+     width:90%;
 }
 .correct{
      border: 0.5px solid var(--error); 
+     width:90%;
 
 }
 /* second page de quiz  */
@@ -311,6 +313,31 @@ border-radius: 10% 30% 50% 70%;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
+.container-category{
+  background-color: darkblue;
+  position:relative;
+}
+.name-div{
+  position:absolute;
+  background-color: #4CAF50;
+ width:50%;
+  height:10vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+form{
+  width:80%;
+  
+}
+.name-div input[name="username"]{
+  width:80%;
+  z-index: 5;
+  height:5vh;
+  background-color: #654321;
+}
 
 
 @media(max-width:768px){

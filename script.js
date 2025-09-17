@@ -25,31 +25,31 @@ const QuizData = {
             options: ["parseInt()", "parseFloat()", "Number()", "toInteger()"],
             answer: 0
         },
-        {
-            question: "Quelle valeur est retournée par `typeof null` ?",
-            options: ["null", "undefined", "object", "boolean"],
-            answer: 2
-        },
-        {
-            question: "Quelle boucle est utilisée pour parcourir un tableau ?",
-            options: ["for", "while", "foreach", "for...of"],
-            answer: 3
-        },
-        {
-            question: "Quelle méthode permet d’ajouter un élément à la fin d’un tableau ?",
-            options: ["push()", "pop()", "shift()", "unshift()"],
-            answer: 0
-        },
-        {
-            question: "Quelle méthode transforme un JSON en objet JavaScript ?",
-            options: ["JSON.parse()", "JSON.stringify()", "JSON.object()", "parse.JSON()"],
-            answer: 0
-        },
-        {
-            question: "Que retournera `2 == '2'` en JavaScript ?",
-            options: ["true", "false", "error", "undefined"],
-            answer: 0
-        }
+        // {
+        //     question: "Quelle valeur est retournée par `typeof null` ?",
+        //     options: ["null", "undefined", "object", "boolean"],
+        //     answer: 2
+        // },
+        // {
+        //     question: "Quelle boucle est utilisée pour parcourir un tableau ?",
+        //     options: ["for", "while", "foreach", "for...of"],
+        //     answer: 3
+        // },
+        // {
+        //     question: "Quelle méthode permet d’ajouter un élément à la fin d’un tableau ?",
+        //     options: ["push()", "pop()", "shift()", "unshift()"],
+        //     answer: 0
+        // },
+        // {
+        //     question: "Quelle méthode transforme un JSON en objet JavaScript ?",
+        //     options: ["JSON.parse()", "JSON.stringify()", "JSON.object()", "parse.JSON()"],
+        //     answer: 0
+        // },
+        // {
+        //     question: "Que retournera `2 == '2'` en JavaScript ?",
+        //     options: ["true", "false", "error", "undefined"],
+        //     answer: 0
+        // }
     ],
 
     "html": [
@@ -120,13 +120,23 @@ if (quizesContainer) {
           <button class="start" data-category="${theme}">
             <i class="fas fa-play"></i> Commencer
           </button>
-        </div>
+      
+  </div>
+       
       </div>
     `).join("")}
   `;
 }
 
+ let NameContainer= document.querySelector('.name-div');
+ let name= document.querySelector('.username');
+ let enter= document.getElementById('enter');
+ let form= document.querySelector('form');
 
+
+ NameContainer.style.display="none";
+
+ console.log("helllo",NameContainer);
 let starts = document.querySelectorAll('.start');
 console.log(starts);
 
@@ -137,10 +147,17 @@ starts.forEach(str => {
 
  
     localStorage.setItem("category", theme);
-  
+    
+  let username= localStorage.getItem("username");
+  if(!username){
+    NameContainer.style.display="block";
+
+
+  }
+  else{ window.location.href = "quiz.html";}
     
 
-    window.location.href = "quiz.html";
+   
      
   });
 });
@@ -155,14 +172,15 @@ let question = document.querySelector('.question');
 
 let propositions = document.querySelectorAll('.propos');
 let answeroption = document.querySelectorAll('input[name="option"]');
-let currentQuestion=0;
+
 let index = 0;
 let score = 0;
 let totalQuestions=questions.length;
 
 let  current=document.querySelector('.current');
 let total=document.querySelector('.total');
-current.innerHTML=currentQuestion+1;
+// current.innerHTML = index + 1;
+
 
 total.innerHTML=totalQuestions;
 
@@ -192,59 +210,73 @@ function showNextQuestion(index) {
     })
 
 }
-answeroption.forEach((option, i) => {
 
-
+answeroption.forEach((option) => {
     option.addEventListener('change', (event) => {
+      
         if (event.target.value === questions[index].answer.toString()) {
-            document.getElementById('test').innerHTML = "good event";
-
             score++;
-            console.log(score);
             option.nextElementSibling.classList.add('correct');
-
-          
-        }
-        else {
+            document.getElementById('test').innerHTML = "good event";
+        } else {
+            event.target.nextElementSibling.classList.add('wrong');
             document.getElementById('test').innerHTML = "bad event";
-            option.disabled = true;
-            option.nextElementSibling.classList.add('wrong');
             answeroption.forEach((opt)=>{
-                if(opt.value===questions[index].answer.toString()){
+                if(opt.value === questions[index].answer.toString()){
                     opt.nextElementSibling.classList.add('correct');
                 }
             })
-           
-           
-          
-            
         }
-          next.style.display = "block";
-           answeroption.forEach((opt) => opt.disabled = true);
-         
-            next.addEventListener('click', () => {
-                console.log('clickabe');
-                index++;
-        
-               answeroption.forEach((opt)=>{
-                opt.nextElementSibling.classList.remove('correct','wrong');
-                opt.checked=false;
-                opt.disabled=false;
-               })
-                console.log(index);
-                if (index < questions.length) {
-                    showNextQuestion(index)
-                }
-                
-                
-            })
-            if(index===questions.length-1){
-                validated.style.display="block";
-                next.style.display="none"
-;
-            }
-    })
-})
+
+       
+        answeroption.forEach((opt) => opt.disabled = true);
+
+      
+        next.style.display = "block";
+    });
+});
+
+
+next.addEventListener('click', () => {
+    index++;
+
+   
+    answeroption.forEach((opt)=>{
+        opt.checked = false;
+        opt.disabled = false;
+        opt.nextElementSibling.classList.remove('correct','wrong');
+    });
+
+    if (index < questions.length) {
+        showNextQuestion(index);
+    } else {
+      
+        next.textContent='valider';
+       let validated;
+       validated=next;
+       validated.addEventListener('click',()=>{
+alert("rak nadi abn 3ami");
+
+
+
+       })
+     
+       
+
+    }
+});
+function EnterYourName(){
+ 
+
+
+
+
+
+
+
+}
+
+
 
 
 
