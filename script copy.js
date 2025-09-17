@@ -55,7 +55,6 @@ const questions = [
     }
 ];
 
-console.log(questions);
 
 let question = document.querySelector('.question');
 
