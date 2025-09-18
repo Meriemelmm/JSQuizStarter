@@ -3,31 +3,31 @@ const QuizData = {
         {
             question: "Quel mot-clé est utilisé pour déclarer une variable en JavaScript ?",
             options: ["var", "let", "const", "all of the above"],
-            answer: 3,
+         answer:[3,1],
             time:30
         },
         {
             question: "Quelle méthode est utilisée pour afficher un message dans la console ?",
             options: ["print()", "console.log()", "echo()", "alert()"],
-            answer: 1,
+            answer:[0,1],
             time:50
         },
         {
             question: "Quel type de langage est JavaScript ?",
             options: ["Compilé", "Interprété", "Binaire", "Assembleur"],
-            answer: 1,
+            answer:[0,1],
             time:120,
         },
         {
             question: "Comment écrire un commentaire sur une seule ligne en JavaScript ?",
             options: ["<!-- commentaire -->", "// commentaire", "/* commentaire */", "# commentaire"],
-            answer: 1,
+             answer:[1,2],
             time:40
         },
         {
             question: "Quelle fonction convertit une chaîne en entier ?",
             options: ["parseInt()", "parseFloat()", "Number()", "toInteger()"],
-            answer: 0,
+           answer:[3,2],
             time:56
         },
         // {
@@ -61,53 +61,53 @@ const QuizData = {
         {
             question: "Quel est le langage utilisé pour structurer une page web ?",
             options: ["HTML", "CSS", "JavaScript", "PHP"],
-            answer: 0,
+          answer:[1],
             time:60
         },
         {
             question: "Quelle balise est utilisée pour insérer une image ?",
             options: ["<img>", "<image>", "<src>", "<pic>"],
-            answer: 0
+           answer:[1],
         },
         {
             question: "Quelle balise définit un lien hypertexte ?",
             options: ["<a>", "<link>", "<href>", "<url>"],
-            answer: 0
+            answer:[1],
         },
         {
             question: "Quelle balise est utilisée pour les titres principaux ?",
             options: ["<h1>", "<head>", "<title>", "<header>"],
-            answer: 0
+            answer:[1],
         },
         {
             question: "Quelle balise est utilisée pour insérer une liste ordonnée ?",
             options: ["<ul>", "<ol>", "<li>", "<list>"],
-            answer: 1
+             answer:[1],
         },
         {
             question: "Quel attribut est utilisé pour donner un identifiant unique à un élément ?",
             options: ["class", "id", "name", "key"],
-            answer: 1
+            answer:[1],
         },
         {
             question: "Quelle balise insère une ligne horizontale ?",
             options: ["<line>", "<hr>", "<br>", "<border>"],
-            answer: 1
+            answer:[1],
         },
         {
             question: "Quelle balise permet d'insérer une vidéo ?",
             options: ["<movie>", "<media>", "<video>", "<vid>"],
-            answer: 2
+            answer:[1],
         },
         {
             question: "Quelle est la balise correcte pour créer un formulaire ?",
             options: ["<form>", "<input>", "<submit>", "<fieldset>"],
-            answer: 0
+             answer:[1],
         },
         {
             question: "Quel attribut est utilisé pour afficher un texte alternatif dans une image ?",
             options: ["title", "alt", "src", "text"],
-            answer: 1
+            answer:[1],
         }
     ],
     css: [
@@ -209,7 +209,7 @@ if (question && propositions.length > 0 && next) {
   let questions = QuizData[theme];
   let index = 0;
   let score = 0;
-
+let selected=[];
   console.log(time);
   let totalQuestions = questions.length;
 
@@ -262,52 +262,107 @@ let intervalId;
 
  
   showQuestion(index);
+
+
+
    
 
  
-  answeroption.forEach((option) => {
-    option.addEventListener('change', (event) => {
-      if (event.target.value === questions[index].answer.toString()) {
-        score++;
-        option.nextElementSibling.classList.add('correct');
+  // answeroption.forEach((option) => {
+    
+  
+  //   // option.addEventListener('change', (event) => {
+  //   //   if (event.target.value === questions[index].answer.toString()) {
+  //   //     score++;
+  //   //     option.nextElementSibling.classList.add('correct');
        
-      } else {
-        event.target.nextElementSibling.classList.add('wrong');
+  //   //   } else {
+  //   //     event.target.nextElementSibling.classList.add('wrong');
        
-        answeroption.forEach((opt) => {
-          if (opt.value === questions[index].answer.toString()) {
-            opt.nextElementSibling.classList.add('correct');
-          }
-        });
-      }
+  //   //     answeroption.forEach((opt) => {
+  //   //       if (opt.value === questions[index].answer.toString()) {
+  //   //         opt.nextElementSibling.classList.add('correct');
+  //   //       }
+  //   //     });
+  //   //   }
 
-      // bloquer les options
-      answeroption.forEach((opt) => opt.disabled = true);
-      next.style.display = "block";
-    });
-  });
+  //   //   // bloquer les options
+  //   //   answeroption.forEach((opt) => opt.disabled = true);
+  //   //   next.style.display = "block";
+  //   // });
+  
+  //    if (option.checked) {
+  //   selected.push(parseInt(option.value));
+  //   console.log(selected);
+  // }
+  
+  
+  // });
   
 //   logique de time ici voir voir maintant:
   if(questions[index].time<=0){
     console.log(out);
 
   }
+ function validated() {
+  next.textContent = "Valider";
+
+  next.addEventListener("click", () => {
+    
+    let selected = [];
+
+   
+    answeroption.forEach((option) => {
+      
+      if (option.checked) {
+        selected.push(parseInt(option.value));
+      }
+      
+      option.nextElementSibling.classList.remove('correct', 'wrong');
+    });
+
+    console.log("Réponses cochées :", selected);
+
+    let answers = questions[index].answer;
+    console.log("Bonnes réponses :", answers);
+
+    
+    answeroption.forEach((option) => {
+      let value = parseInt(option.value);
+      if (option.checked) {
+        if (answers.includes(value)) {
+          option.nextElementSibling.classList.add('correct');
+        } else {
+          option.nextElementSibling.classList.add('wrong');
+        }
+      }
+    });
+
+    next.textContent="next";
+    NextQ();
+   
+  });
+}
 
 
-  // bouton next:
+validated();
+ function NextQ(){
   next.addEventListener('click', () => {
+    next.style.display="block";
     index++;
     answeroption.forEach((opt) => {
       opt.checked = false;
-      opt.disabled = false;
+       opt.disabled = false;
       opt.nextElementSibling.classList.remove('correct', 'wrong');
     });
 
     if (index < questions.length) {
+      validated();
       showQuestion(index);
+      
     } if(index===questions.length-1) {
       next.textContent = 'Valider';
-      next.addEventListener('click', () => {
+     next.addEventListener('click', () => {
         console.log("Quiz terminé  Score : " + score + "/" + totalQuestions);
 
 
@@ -322,16 +377,65 @@ let intervalId;
         };
         let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
         
-        history.push(result);
+       history.push(result);
       
-      let QuizHistory= localStorage.setItem("QuizHistory", JSON.stringify(history));
-        next.style.display="none";
-            window.location.href = "History.html";
+     let QuizHistory= localStorage.setItem("QuizHistory", JSON.stringify(history));
+       next.style.display="none";
+             window.location.href = "History.html";
        
       });
     
       
     }
-  });
+   });
+ }
+
+
+
+  
+
+ 
+  // bouton next:
+  // next.addEventListener('click', () => {
+  //   index++;
+  //   answeroption.forEach((opt) => {
+  //     opt.checked = false;
+  //     opt.disabled = false;
+  //     opt.nextElementSibling.classList.remove('correct', 'wrong');
+  //   });
+
+  //   if (index < questions.length) {
+  //     showQuestion(index);
+  //   } if(index===questions.length-1) {
+  //     next.textContent = 'Valider';
+  //     next.addEventListener('click', () => {
+  //       console.log("Quiz terminé  Score : " + score + "/" + totalQuestions);
+
+
+  //       let username = localStorage.getItem("username");
+  //       let theme= localStorage.getItem('category');
+       
+  //       let result={
+  //         "username": username,
+  //         "theme":theme,
+  //         "score":score,
+  //         date: new Date().toLocaleString()
+  //       };
+  //       let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+        
+  //       history.push(result);
+      
+  //     let QuizHistory= localStorage.setItem("QuizHistory", JSON.stringify(history));
+  //       next.style.display="none";
+  //           window.location.href = "History.html";
+       
+  //     });
+    
+      
+  //   }
+  // });
 }
+next.style.display="block";
+
+
 console.log(localStorage.getItem("username"));

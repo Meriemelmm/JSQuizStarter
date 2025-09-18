@@ -311,6 +311,6 @@ let intervalId;
         alert("Quiz terminé ✅ Score : " + score + "/" + totalQuestions);
       });
     }
-  });
+  }); 
 }
 console.log(localStorage.getItem("username"));
