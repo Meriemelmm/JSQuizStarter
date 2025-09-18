@@ -57,86 +57,7 @@ const QuizData = {
         // }
     ],
 
-    "Html": [
-        {
-            question: "Quel est le langage utilisé pour structurer une page web ?",
-            options: ["HTML", "CSS", "JavaScript", "PHP"],
-          answer:[1],
-            time:60
-        },
-        {
-            question: "Quelle balise est utilisée pour insérer une image ?",
-            options: ["<img>", "<image>", "<src>", "<pic>"],
-           answer:[1],
-        },
-        {
-            question: "Quelle balise définit un lien hypertexte ?",
-            options: ["<a>", "<link>", "<href>", "<url>"],
-            answer:[1],
-        },
-        {
-            question: "Quelle balise est utilisée pour les titres principaux ?",
-            options: ["<h1>", "<head>", "<title>", "<header>"],
-            answer:[1],
-        },
-        {
-            question: "Quelle balise est utilisée pour insérer une liste ordonnée ?",
-            options: ["<ul>", "<ol>", "<li>", "<list>"],
-             answer:[1],
-        },
-        {
-            question: "Quel attribut est utilisé pour donner un identifiant unique à un élément ?",
-            options: ["class", "id", "name", "key"],
-            answer:[1],
-        },
-        {
-            question: "Quelle balise insère une ligne horizontale ?",
-            options: ["<line>", "<hr>", "<br>", "<border>"],
-            answer:[1],
-        },
-        {
-            question: "Quelle balise permet d'insérer une vidéo ?",
-            options: ["<movie>", "<media>", "<video>", "<vid>"],
-            answer:[1],
-        },
-        {
-            question: "Quelle est la balise correcte pour créer un formulaire ?",
-            options: ["<form>", "<input>", "<submit>", "<fieldset>"],
-             answer:[1],
-        },
-        {
-            question: "Quel attribut est utilisé pour afficher un texte alternatif dans une image ?",
-            options: ["title", "alt", "src", "text"],
-            answer:[1],
-        }
-    ],
-    css: [
-  {
-    question: "Quelle propriété CSS est utilisée pour changer la couleur du texte ?",
-    options: ["font-color", "color", "text-color", "background-color"],
-    answer: 1
-  },
-  {
-    question: "Quelle unité relative est utilisée en CSS pour définir la taille de police par rapport à l'élément parent ?",
-    options: ["px", "em", "%", "rem"],
-    answer: 1
-  },
-  {
-    question: "Quelle propriété permet de définir l'espace intérieur d'un élément ?",
-    options: ["margin", "padding", "border", "spacing"],
-    answer: 1
-  },
-  {
-    question: "Quelle valeur de position fixe un élément par rapport à la fenêtre du navigateur ?",
-    options: ["absolute", "relative", "fixed", "sticky"],
-    answer: 2
-  },
-  {
-    question: "Quel sélecteur CSS permet de sélectionner tous les paragraphes `<p>` ?",
-    options: ["p{}", "#p{}", ".p{}", "paragraph{}"],
-    answer: 0
-  }
-]
+   
 
 };
 // ----------- partie page home ------------
@@ -201,241 +122,124 @@ let current = document.querySelector('.current');
 let total = document.querySelector('.total');
 let time = document.querySelector('.time');
 
-
-
-
 if (question && propositions.length > 0 && next) {
   let theme = localStorage.getItem("category");
   let questions = QuizData[theme];
   let index = 0;
   let score = 0;
-let selected=[];
-  console.log(time);
+  let mode = "validate"; 
   let totalQuestions = questions.length;
-
   total.innerHTML = totalQuestions;
-let intervalId;
- 
+  let intervalId;
+
   function showQuestion(i) {
-   clearInterval(intervalId);
+    clearInterval(intervalId); 
     question.innerHTML = questions[i].question;
+
     
-      let countime=questions[i].time;
-      time.innerHTML=countime;
-      console.log(countime);
-     intervalId = setInterval(() => {
-    countime--;
-    time.innerHTML=countime;
-  
-    if (countime <= 0) {
-        clearInterval(intervalId);
-        console.log("by by ");
-        
-        if (countime <= 0) {
-            clearInterval(intervalId);
-
-            
-            answeroption.forEach((opt) => {
-                opt.disabled = true;
-                if (opt.value === questions[i].answer.toString()) {
-                    opt.nextElementSibling.classList.add('correct');
-                }
-            });
-
-           
-            next.style.display = "block";
-
-            
-           
-        }
-    }
-}, 1000);
-
     propositions.forEach((proposition, j) => {
       proposition.querySelector('input').value = j;
+      proposition.querySelector('input').checked = false;
+      proposition.querySelector('input').disabled = false;
+      proposition.querySelector('label').classList.remove('correct', 'wrong');
       proposition.querySelector('label').innerHTML = questions[i].options[j];
     });
+
     current.innerHTML = i + 1;
-    next.style.display = "none";
-    document.getElementById('test').innerHTML = "";
+    next.textContent = "Valider";
+    mode = "validate";
+
+    
+    let countime = questions[i].time;
+    time.innerHTML = countime;
+
+    intervalId = setInterval(() => {
+      countime--;
+      time.innerHTML = countime;
+
+      if (countime <= 0) {
+        clearInterval(intervalId);
+      
+        validateAnswer(true); 
+      }
+    }, 1000);
   }
+
+  
+  function validateAnswer(auto = false) {
+    clearInterval(intervalId); 
+    let selected = [];
+
+    if (!auto) {
+      answeroption.forEach((option) => {
+        if (option.checked) {
+          selected.push(parseInt(option.value));
+        }
+      });
+    }
+
+    let answers = questions[index].answer; 
+   
+   
+    answeroption.forEach((option) => {
+      let value = parseInt(option.value);
+      option.disabled = true; 
+      if (answers.includes(value)) {
+        option.nextElementSibling.classList.add('correct');
+      }
+      if (option.checked && !answers.includes(value)) {
+        option.nextElementSibling.classList.add('wrong');
+      }
+    });
+
+   
+    if (!auto && JSON.stringify(selected.sort()) === JSON.stringify(answers.sort())) {
+      score++;
+    }
+
+    next.textContent = "Next";
+    mode = "next";
+  }
+
+ 
+  function nextQuestion() {
+    index++;
+    if (index < questions.length) {
+      showQuestion(index);
+    } else {
+      
+      alert("Quiz terminé ! Score : " + score + "/" + totalQuestions);
+
+      let username = localStorage.getItem("username");
+      let theme = localStorage.getItem("category");
+
+      let result = {
+        username: username,
+        theme: theme,
+        score: score,
+        date: new Date().toLocaleString()
+      };
+
+      let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+      history.push(result);
+      localStorage.setItem("quizHistory", JSON.stringify(history));
+
+      next.style.display = "none";
+      window.location.href = "History.html";
+    }
+  }
+
+ 
+  next.addEventListener("click", () => {
+    if (mode === "validate") {
+      validateAnswer();
+    } else if (mode === "next") {
+      nextQuestion();
+    }
+  });
 
  
   showQuestion(index);
 
-
-
-   
-
- 
-  // answeroption.forEach((option) => {
-    
-  
-  //   // option.addEventListener('change', (event) => {
-  //   //   if (event.target.value === questions[index].answer.toString()) {
-  //   //     score++;
-  //   //     option.nextElementSibling.classList.add('correct');
-       
-  //   //   } else {
-  //   //     event.target.nextElementSibling.classList.add('wrong');
-       
-  //   //     answeroption.forEach((opt) => {
-  //   //       if (opt.value === questions[index].answer.toString()) {
-  //   //         opt.nextElementSibling.classList.add('correct');
-  //   //       }
-  //   //     });
-  //   //   }
-
-  //   //   // bloquer les options
-  //   //   answeroption.forEach((opt) => opt.disabled = true);
-  //   //   next.style.display = "block";
-  //   // });
-  
-  //    if (option.checked) {
-  //   selected.push(parseInt(option.value));
-  //   console.log(selected);
-  // }
-  
-  
-  // });
-  
-//   logique de time ici voir voir maintant:
-  if(questions[index].time<=0){
-    console.log(out);
-
-  }
- function validated() {
-  next.textContent = "Valider";
-
-  next.addEventListener("click", () => {
-    
-    let selected = [];
-
-   
-    answeroption.forEach((option) => {
-      
-      if (option.checked) {
-        selected.push(parseInt(option.value));
-      }
-      
-      option.nextElementSibling.classList.remove('correct', 'wrong');
-    });
-
-    console.log("Réponses cochées :", selected);
-
-    let answers = questions[index].answer;
-    console.log("Bonnes réponses :", answers);
-
-    
-    answeroption.forEach((option) => {
-      let value = parseInt(option.value);
-      if (option.checked) {
-        if (answers.includes(value)) {
-          option.nextElementSibling.classList.add('correct');
-        } else {
-          option.nextElementSibling.classList.add('wrong');
-        }
-      }
-    });
-
-    next.textContent="next";
-    NextQ();
-   
-  });
 }
 
-
-validated();
- function NextQ(){
-  next.addEventListener('click', () => {
-    next.style.display="block";
-    index++;
-    answeroption.forEach((opt) => {
-      opt.checked = false;
-       opt.disabled = false;
-      opt.nextElementSibling.classList.remove('correct', 'wrong');
-    });
-
-    if (index < questions.length) {
-      validated();
-      showQuestion(index);
-      
-    } if(index===questions.length-1) {
-      next.textContent = 'Valider';
-     next.addEventListener('click', () => {
-        console.log("Quiz terminé  Score : " + score + "/" + totalQuestions);
-
-
-        let username = localStorage.getItem("username");
-        let theme= localStorage.getItem('category');
-       
-        let result={
-          "username": username,
-          "theme":theme,
-          "score":score,
-          date: new Date().toLocaleString()
-        };
-        let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
-        
-       history.push(result);
-      
-     let QuizHistory= localStorage.setItem("QuizHistory", JSON.stringify(history));
-       next.style.display="none";
-             window.location.href = "History.html";
-       
-      });
-    
-      
-    }
-   });
- }
-
-
-
-  
-
- 
-  // bouton next:
-  // next.addEventListener('click', () => {
-  //   index++;
-  //   answeroption.forEach((opt) => {
-  //     opt.checked = false;
-  //     opt.disabled = false;
-  //     opt.nextElementSibling.classList.remove('correct', 'wrong');
-  //   });
-
-  //   if (index < questions.length) {
-  //     showQuestion(index);
-  //   } if(index===questions.length-1) {
-  //     next.textContent = 'Valider';
-  //     next.addEventListener('click', () => {
-  //       console.log("Quiz terminé  Score : " + score + "/" + totalQuestions);
-
-
-  //       let username = localStorage.getItem("username");
-  //       let theme= localStorage.getItem('category');
-       
-  //       let result={
-  //         "username": username,
-  //         "theme":theme,
-  //         "score":score,
-  //         date: new Date().toLocaleString()
-  //       };
-  //       let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
-        
-  //       history.push(result);
-      
-  //     let QuizHistory= localStorage.setItem("QuizHistory", JSON.stringify(history));
-  //       next.style.display="none";
-  //           window.location.href = "History.html";
-       
-  //     });
-    
-      
-  //   }
-  // });
-}
-next.style.display="block";
-
-
-console.log(localStorage.getItem("username"));
