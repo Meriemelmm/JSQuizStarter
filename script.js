@@ -145,6 +145,7 @@ let NameContainer = document.querySelector('.name-div');
 let nameInput = document.querySelector('.username');
 let form = document.querySelector('.NameForm');
 
+
 if (quizesContainer) {
   
   let categories = Object.keys(QuizData);
@@ -233,7 +234,7 @@ let intervalId;
         if (countime <= 0) {
             clearInterval(intervalId);
 
-            // considérer la réponse comme fausse et montrer la bonne réponse
+            
             answeroption.forEach((opt) => {
                 opt.disabled = true;
                 if (opt.value === questions[i].answer.toString()) {
@@ -241,10 +242,10 @@ let intervalId;
                 }
             });
 
-            // afficher le bouton next
+           
             next.style.display = "block";
 
-            // passer automatiquement à la prochaine question après un court délai
+            
            
         }
     }
@@ -304,11 +305,32 @@ let intervalId;
 
     if (index < questions.length) {
       showQuestion(index);
-    } else {
+    } if(index===questions.length-1) {
       next.textContent = 'Valider';
       next.addEventListener('click', () => {
-        alert("Quiz terminé ✅ Score : " + score + "/" + totalQuestions);
+        console.log("Quiz terminé  Score : " + score + "/" + totalQuestions);
+
+
+        let username = localStorage.getItem("username");
+        let theme= localStorage.getItem('category');
+       
+        let result={
+          "username": username,
+          "theme":theme,
+          "score":score,
+          date: new Date().toLocaleString()
+        };
+        let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+        
+        history.push(result);
+      
+      let QuizHistory= localStorage.setItem("QuizHistory", JSON.stringify(history));
+        next.style.display="none";
+            window.location.href = "History.html";
+       
       });
+    
+      
     }
   });
 }
