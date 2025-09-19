@@ -30,32 +30,52 @@ const QuizData = {
            answer:[3,2],
             time:56
         },
-        // {
-        //     question: "Quelle valeur est retournée par `typeof null` ?",
-        //     options: ["null", "undefined", "object", "boolean"],
-        //     answer: 2
-        // },
-        // {
-        //     question: "Quelle boucle est utilisée pour parcourir un tableau ?",
-        //     options: ["for", "while", "foreach", "for...of"],
-        //     answer: 3
-        // },
-        // {
-        //     question: "Quelle méthode permet d’ajouter un élément à la fin d’un tableau ?",
-        //     options: ["push()", "pop()", "shift()", "unshift()"],
-        //     answer: 0
-        // },
-        // {
-        //     question: "Quelle méthode transforme un JSON en objet JavaScript ?",
-        //     options: ["JSON.parse()", "JSON.stringify()", "JSON.object()", "parse.JSON()"],
-        //     answer: 0
-        // },
-        // {
-        //     question: "Que retournera `2 == '2'` en JavaScript ?",
-        //     options: ["true", "false", "error", "undefined"],
-        //     answer: 0
-        // }
+        {
+            question: "Quelle valeur est retournée par `typeof null` ?",
+            options: ["null", "undefined", "object", "boolean"],
+            answer: 2
+        },
+        {
+            question: "Quelle boucle est utilisée pour parcourir un tableau ?",
+            options: ["for", "while", "foreach", "for...of"],
+            answer: 3
+        },
+        {
+            question: "Quelle méthode permet d’ajouter un élément à la fin d’un tableau ?",
+            options: ["push()", "pop()", "shift()", "unshift()"],
+            answer: 0
+        },
+        {
+            question: "Quelle méthode transforme un JSON en objet JavaScript ?",
+            options: ["JSON.parse()", "JSON.stringify()", "JSON.object()", "parse.JSON()"],
+            answer: 0
+        },
+        {
+            question: "Que retournera `2 == '2'` en JavaScript ?",
+            options: ["true", "false", "error", "undefined"],
+            answer: 0
+        }
     ],
+    "HTML": [
+        {
+            question: "Quel mot-clé est utilisé pour déclarer une variable en JavaScript ?",
+            options: ["var", "let", "const", "all of the above"],
+         answer:[3,1],
+            time:30
+        },
+        {
+            question: "Quelle méthode est utilisée pour afficher un message dans la console ?",
+            options: ["print()", "console.log()", "echo()", "alert()"],
+            answer:[0,1],
+            time:50
+        },
+        {
+            question: "Quel type de langage est JavaScript ?",
+            options: ["Compilé", "Interprété", "Binaire", "Assembleur"],
+            answer:[0,1],
+            time:120,
+        }]
+    
 
    
 
@@ -121,6 +141,7 @@ let next = document.querySelector('.next');
 let current = document.querySelector('.current');
 let total = document.querySelector('.total');
 let time = document.querySelector('.time');
+let answerQuestions=[];
 
 if (question && propositions.length > 0 && next) {
   let theme = localStorage.getItem("category");
@@ -174,9 +195,12 @@ if (question && propositions.length > 0 && next) {
       answeroption.forEach((option) => {
         if (option.checked) {
           selected.push(parseInt(option.value));
+         
         }
       });
+       answerQuestions.push(selected);
     }
+    console.log("answer",answerQuestions);
 
     let answers = questions[index].answer; 
    
@@ -217,7 +241,9 @@ if (question && propositions.length > 0 && next) {
         username: username,
         theme: theme,
         score: score,
-        date: new Date().toLocaleString()
+        totalQuestions:totalQuestions,
+        date: new Date().toLocaleString(),
+        answerUser:answerQuestions
       };
 
       let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
@@ -242,4 +268,5 @@ if (question && propositions.length > 0 && next) {
   showQuestion(index);
 
 }
+
 

@@ -338,15 +338,39 @@ form{
   height:5vh;
   background-color: #654321;
 }
+@media(max-width:1024px){
+  .quizes{
+    width:90%;
+    margin-top:3rem;
+  }
+  .quize{
+    width:80%;
+    background-color: saddlebrown;
+  }
+  .start-div{
+ 
+    width:100%;
+  }
+  .start{
+    width:80%;
+    height:3rem;
+  }
 
+}
 
 @media(max-width:768px){
+  .quiz{
+  
+    width:50%;
+    
+  }
     
 }
 @media(max-width:480px){
   nav{
     display:none;
   }
+  .
     .quizes{
         margin-top: 2rem;
         width:90%;
