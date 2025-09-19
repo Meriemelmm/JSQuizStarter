@@ -30,31 +30,31 @@ const QuizData = {
            answer:[3,2],
             time:56
         },
-        {
-            question: "Quelle valeur est retournée par `typeof null` ?",
-            options: ["null", "undefined", "object", "boolean"],
-            answer: 2
-        },
-        {
-            question: "Quelle boucle est utilisée pour parcourir un tableau ?",
-            options: ["for", "while", "foreach", "for...of"],
-            answer: 3
-        },
-        {
-            question: "Quelle méthode permet d’ajouter un élément à la fin d’un tableau ?",
-            options: ["push()", "pop()", "shift()", "unshift()"],
-            answer: 0
-        },
-        {
-            question: "Quelle méthode transforme un JSON en objet JavaScript ?",
-            options: ["JSON.parse()", "JSON.stringify()", "JSON.object()", "parse.JSON()"],
-            answer: 0
-        },
-        {
-            question: "Que retournera `2 == '2'` en JavaScript ?",
-            options: ["true", "false", "error", "undefined"],
-            answer: 0
-        }
+        // {
+        //     question: "Quelle valeur est retournée par `typeof null` ?",
+        //     options: ["null", "undefined", "object", "boolean"],
+        //     answer: 2
+        // },
+        // {
+        //     question: "Quelle boucle est utilisée pour parcourir un tableau ?",
+        //     options: ["for", "while", "foreach", "for...of"],
+        //     answer: 3
+        // },
+        // {
+        //     question: "Quelle méthode permet d’ajouter un élément à la fin d’un tableau ?",
+        //     options: ["push()", "pop()", "shift()", "unshift()"],
+        //     answer: 0
+        // },
+        // {
+        //     question: "Quelle méthode transforme un JSON en objet JavaScript ?",
+        //     options: ["JSON.parse()", "JSON.stringify()", "JSON.object()", "parse.JSON()"],
+        //     answer: 0
+        // },
+        // {
+        //     question: "Que retournera `2 == '2'` en JavaScript ?",
+        //     options: ["true", "false", "error", "undefined"],
+        //     answer: 0
+        // }
     ],
     "HTML": [
         {
@@ -100,9 +100,9 @@ if (quizesContainer) {
       </div>
     </div>
   `).join("");
-
-  
   NameContainer.style.display = "none";
+  
+ 
 
   
   document.querySelectorAll('.start').forEach(btn => {
@@ -232,7 +232,7 @@ if (question && propositions.length > 0 && next) {
       showQuestion(index);
     } else {
       
-      alert("Quiz terminé ! Score : " + score + "/" + totalQuestions);
+     
 
       let username = localStorage.getItem("username");
       let theme = localStorage.getItem("category");
@@ -268,5 +268,6 @@ if (question && propositions.length > 0 && next) {
   showQuestion(index);
 
 }
+
 
 

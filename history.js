@@ -19,6 +19,7 @@ let results= document.querySelector('.results');
 let cat=localStorage.getItem('category');
 let QuestionCatego= QuizData[cat];
 let Restart= document.querySelector('.Restart');
+let arrive= document.querySelector('.arriver');
 
 
 let answerUser= LastHistory.answerUser;
@@ -49,8 +50,29 @@ results.innerHTML = QuestionCatego.map((q, idx) => {
     `;
 }).join('');
 // verifier cette partie  de  restart :
-Restart.addEventListener('click',()=>{
+
+arrive.addEventListener('click',()=>{
      window.location.href = "index.html";
 })
+ 
+ Restart.addEventListener('click',()=>{
+
+ console.log("vou etes sur de faire  recommencer ");
+
+
+
+
+
+
+
+
+ })
+ let fruits = ["pomme", "banane", "orange", "kiwi"];
+
+let randomIndex = Math.floor(Math.random() * fruits.length);
+let randomFruit = fruits[randomIndex];
+
+
+
 
 
