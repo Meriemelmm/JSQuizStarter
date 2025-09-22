@@ -20,6 +20,7 @@ let theme = localStorage.getItem("category");
   let intervalId;
    let totalQuestions ;
     let TimeGlobal;
+    // afiches lesquestions et les options:
     function showQuestion(i) {
     clearInterval(intervalId); 
     question.innerHTML = questions[i].question;
@@ -53,11 +54,27 @@ let theme = localStorage.getItem("category");
     }, 1000);
   }
 //  fucntion recupere data dynamique:
-  async function main(theme){
+
+  async function fetchData(theme){
     const response=await fetch("DataJson/"+theme+".json");
     try{
          data= await response.json();
-         questions=data.questions;
+          return data.questions;
+        
+  
+         
+    }
+    catch(eroor){
+        console.log("Error",eroor);
+    }
+}
+// afiches les questions et les options:
+ 
+
+async function main() {
+   
+    questions = await fetchData(theme);
+
          totalQuestions=questions.length;
          nameCategory.innerHTML=theme;
          total.innerHTML = totalQuestions;
@@ -70,21 +87,14 @@ console.log(TimeGlobal);
  totalQuestions= questions.length;
 
  showQuestion(index);
-  
-         
-    }
-    catch(eroor){
-        console.log("Error",eroor);
+    if (questions.length > 0) {
+        showQuestion(index);
     }
 }
-// afiches les questions et les options:
- 
-
-main(theme);
+main();
      
 
 
 
-//  let totalQuestions = questions.length;
-//   total.innerHTML = totalQuestions;
+
 

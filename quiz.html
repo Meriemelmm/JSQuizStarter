@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -7,8 +7,19 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-  
-  
+    /* Timer global */
+    .global-timer-div {
+      width: 95%;
+      background: #A0522D;
+       /* background-color: var(--primary-dark); */
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
   </style>
 </head>
 <body>
@@ -20,29 +31,48 @@
       <a href="#"><i class="fas fa-envelope"></i> Contact</a>
     </nav>
   </header>
+
   <div class="container-question">
-  <h1 class="name-quiz">  <span class="name-cat"></span> <span>QUIZ</span></h1> 
-     <div class="numb-timer">  <h3>  Question: <span class="current"></span>/ <span class="total"></span>:</h3>  
-    <div class="time"> </div></div>
-    <p  class="question">  </p>
-     <div class="proposition">
-        <div class="propos"> <input type="checkbox" name="option" value="=">     <label for=""></label></div>
-   <div class="propos"> <input type="checkbox" name="option" value="">     <label for=""></label></div>
-   <div class="propos"> <input type="checkbox" name="option" value="">     <label for=""></label></div>
-   <div class="propos"> <input type="checkbox" name="option" value="">     <label for=""></label></div>
+    <h1 class="name-quiz"><span class="name-cat"></span> <span>QUIZ</span></h1> 
 
-</div>
- <div class="btn-div"><button class="next">suivant</button></div>
+    <div class="numb-timer">
+      <h3>Question: <span class="current"></span>/ <span class="total"></span></h3>  
+      <div class="time"></div>
+    </div>
 
+    <!-- Timer global -->
+    <div class="global-timer-div">
+      Temps total restant: <span class="global-time">00:00</span>
+    </div>
 
-<p id="test"></p>
+    <p class="question"></p>
 
+    <div class="proposition">
+      <div class="propos">
+        <input type="checkbox" name="option" value="=">
+        <label for=""></label>
+      </div>
+      <div class="propos">
+        <input type="checkbox" name="option" value="">
+        <label for=""></label>
+      </div>
+      <div class="propos">
+        <input type="checkbox" name="option" value="">
+        <label for=""></label>
+      </div>
+      <div class="propos">
+        <input type="checkbox" name="option" value="">
+        <label for=""></label>
+      </div>
+    </div>
 
+    <div class="btn-div">
+      <button class="next">Suivant</button>
+    </div>
 
+    <p id="test"></p>
   </div>
-  
-  
-  
-<script src="quiz.js"></script>
+
+  <script src="quiz.js"></script>
 </body>
 </html>
