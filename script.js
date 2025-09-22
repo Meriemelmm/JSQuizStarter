@@ -30,51 +30,223 @@ const QuizData = {
            answer:[3,2],
             time:56
         },
-        // {
-        //     question: "Quelle valeur est retournée par `typeof null` ?",
-        //     options: ["null", "undefined", "object", "boolean"],
-        //     answer: 2
-        // },
-        // {
-        //     question: "Quelle boucle est utilisée pour parcourir un tableau ?",
-        //     options: ["for", "while", "foreach", "for...of"],
-        //     answer: 3
-        // },
-        // {
-        //     question: "Quelle méthode permet d’ajouter un élément à la fin d’un tableau ?",
-        //     options: ["push()", "pop()", "shift()", "unshift()"],
-        //     answer: 0
-        // },
-        // {
-        //     question: "Quelle méthode transforme un JSON en objet JavaScript ?",
-        //     options: ["JSON.parse()", "JSON.stringify()", "JSON.object()", "parse.JSON()"],
-        //     answer: 0
-        // },
-        // {
-        //     question: "Que retournera `2 == '2'` en JavaScript ?",
-        //     options: ["true", "false", "error", "undefined"],
-        //     answer: 0
-        // }
+       
     ],
-    "HTML": [
-        {
-            question: "Quel mot-clé est utilisé pour déclarer une variable en JavaScript ?",
-            options: ["var", "let", "const", "all of the above"],
-         answer:[3,1],
-            time:30
-        },
-        {
-            question: "Quelle méthode est utilisée pour afficher un message dans la console ?",
-            options: ["print()", "console.log()", "echo()", "alert()"],
-            answer:[0,1],
-            time:50
-        },
-        {
-            question: "Quel type de langage est JavaScript ?",
-            options: ["Compilé", "Interprété", "Binaire", "Assembleur"],
-            answer:[0,1],
-            time:120,
-        }]
+   "HTML": [
+    {
+        question: "HTML est-il un langage de programmation ?",
+        options: ["Oui", "Non", "Parfois", "Uniquement avec CSS"],
+        answer: [1],
+        time: 40
+    },
+    {
+        question: "À quoi sert le HTML dans une page web ?",
+        options: [
+            "Structurer le contenu",
+            "Donner du style",
+            "Définir la logique",
+            "Créer l’architecture du texte et des médias"
+        ],
+        answer: [0,3],
+        time: 50
+    },
+    {
+        question: "Quelle est la différence entre HTML et CSS ?",
+        options: [
+            "HTML structure le contenu, CSS le met en forme",
+            "CSS est un langage de programmation",
+            "HTML s’occupe uniquement du style",
+            "CSS gère uniquement les images"
+        ],
+        answer: [0],
+        time: 60
+    },
+    {
+        question: "Quelle est la différence entre HTML et JavaScript ?",
+        options: [
+            "HTML structure la page, JavaScript ajoute des interactions",
+            "HTML et JavaScript font la même chose",
+            "JavaScript sert à styliser les pages",
+            "HTML est plus rapide que JavaScript"
+        ],
+        answer: [0],
+        time: 70
+    },
+    {
+        question: "Qu’est-ce qu’un attribut en HTML ?",
+        options: [
+            "Une propriété d’une balise qui modifie son comportement",
+            "Un style appliqué par défaut",
+            "Un élément caché de la page",
+            "Un langage séparé du HTML"
+        ],
+        answer: [0],
+        time: 45
+    },
+    {
+        question: "Est-ce que HTML est sensible à la casse (majuscules/minuscules) ?",
+        options: ["Oui", "Non", "Seulement pour les balises", "Seulement pour les attributs"],
+        answer: [1],
+        time: 35
+    },
+    {
+        question: "Qu’est-ce que <!DOCTYPE html> signifie ?",
+        options: [
+            "C’est une balise obligatoire",
+            "C’est une déclaration qui indique la version de HTML utilisée",
+            "C’est une balise qui affiche du texte",
+            "C’est une fonction de JavaScript"
+        ],
+        answer: [1],
+        time: 50
+    },
+    {
+        question: "Quelle est la particularité des balises HTML auto-fermantes ?",
+        options: [
+            "Elles n’ont pas besoin de balise de fermeture",
+            "Elles doivent toujours avoir un attribut",
+            "Elles ne fonctionnent qu’en CSS",
+            "Elles sont invisibles dans le code"
+        ],
+        answer: [0],
+        time: 40
+    },
+    {
+        question: "Quelle est la différence entre une liste ordonnée et une liste non ordonnée ?",
+        options: [
+            "Ordonnée = numéros, Non ordonnée = puces",
+            "Ordonnée = puces, Non ordonnée = chiffres",
+            "Ordonnée = en colonnes, Non ordonnée = en lignes",
+            "Il n’y a pas de différence"
+        ],
+        answer: [0],
+        time: 60
+    },
+    {
+        question: "HTML est principalement utilisé pour :",
+        options: [
+            "Structurer le contenu d’une page web",
+            "Ajouter du style aux pages web",
+            "Programmer des algorithmes",
+            "Créer des animations"
+        ],
+        answer: [0],
+        time: 35
+    }
+],"CSS": [
+    {
+        question: "À quoi sert le CSS dans une page web ?",
+        options: [
+            "Il sert à définir l'apparence et le style d’une page web",
+            "Il sert à structurer le contenu comme HTML",
+            "Il sert à créer des interactions comme JavaScript",
+            "Il permet de contrôler les couleurs, polices et tailles"
+        ],
+        answer: [0,3],
+        time: 50
+    },
+    {
+        question: "Quelle est la principale différence entre HTML et CSS ?",
+        options: [
+            "HTML structure le contenu alors que CSS gère la présentation visuelle",
+            "CSS remplace totalement HTML",
+            "HTML définit uniquement les couleurs, CSS définit uniquement les titres",
+            "CSS est un langage de programmation contrairement à HTML"
+        ],
+        answer: [0],
+        time: 60
+    },
+    {
+        question: "Pourquoi utiliser un fichier CSS externe ?",
+        options: [
+            "Pour séparer le style du contenu",
+            "Pour réutiliser le même style sur plusieurs pages",
+            "Parce que c’est obligatoire",
+            "Pour rendre le code plus clair et maintenable"
+        ],
+        answer: [0,1,3],
+        time: 70
+    },
+    {
+        question: "Que permet le concept de 'responsive design' en CSS ?",
+        options: [
+            "Adapter l’affichage d’un site aux différentes tailles d’écran",
+            "Créer automatiquement du contenu",
+            "Changer le langage utilisé sur la page",
+            "Améliorer le référencement sans modifier le code HTML"
+        ],
+        answer: [0],
+        time: 65
+    },
+    {
+        question: "À quoi sert un sélecteur CSS ?",
+        options: [
+            "À indiquer sur quels éléments HTML appliquer un style",
+            "À écrire du texte directement dans une page",
+            "À définir des règles de logique comme JavaScript",
+            "À organiser les fichiers du projet"
+        ],
+        answer: [0],
+        time: 45
+    },
+    {
+        question: "Pourquoi utilise-t-on le positionnement en CSS ?",
+        options: [
+            "Pour placer les éléments à l’endroit désiré sur la page",
+            "Pour contrôler la disposition des éléments entre eux",
+            "Pour remplacer le code JavaScript",
+            "Pour structurer le contenu comme le fait HTML"
+        ],
+        answer: [0,1],
+        time: 55
+    },
+    {
+        question: "À quoi sert la propriété 'z-index' ?",
+        options: [
+            "À définir quel élément doit apparaître devant ou derrière un autre",
+            "À augmenter la vitesse du site",
+            "À changer la couleur du texte",
+            "À rendre un site responsive"
+        ],
+        answer: [0],
+        time: 40
+    },
+    {
+        question: "Pourquoi est-il important d’utiliser des unités relatives comme % ou em en CSS ?",
+        options: [
+            "Parce qu’elles permettent une meilleure adaptation aux différents écrans",
+            "Parce qu’elles sont toujours plus rapides que les pixels",
+            "Parce qu’elles facilitent le responsive design",
+            "Parce qu’elles remplacent automatiquement HTML"
+        ],
+        answer: [0,2],
+        time: 70
+    },
+    {
+        question: "Que permet un media query en CSS ?",
+        options: [
+            "Adapter les styles en fonction de la taille ou du type d’écran",
+            "Créer des images automatiquement",
+            "Ajouter du contenu interactif",
+            "Définir la structure logique d’une page"
+        ],
+        answer: [0],
+        time: 60
+    },
+    {
+        question: "Le CSS est-il un langage de programmation ?",
+        options: [
+            "Non, c’est un langage de style",
+            "Oui, il permet de créer des algorithmes",
+            "Oui, il peut remplacer JavaScript",
+            "Non, il sert uniquement à décrire la présentation des pages"
+        ],
+        answer: [0,3],
+        time: 50
+    }
+]
+
+
     
 
    
@@ -197,7 +369,7 @@ if (question && propositions.length > 0 && next) {
           selected.push(parseInt(option.value));
          
         }
-      });
+      }); 
        answerQuestions.push(selected);
     }
     console.log("answer",answerQuestions);
