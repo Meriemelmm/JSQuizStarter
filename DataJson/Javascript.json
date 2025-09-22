@@ -1,112 +1,65 @@
-[
-  {
-    "question": "Que signifie HTML ?",
-    "options": [
-      "Hyper Text Markup Language",
-      "High Text Machine Language",
-      "Hyperlinks and Text Markup Language",
-      "Home Tool Markup Language"
-    ],
-    "answer": [0],
-    "time": 30
-  },
-  {
-    "question": "Quel élément est utilisé pour créer un lien hypertexte ?",
-    "options": [
-      "<link>",
-      "<a>",
-      "<href>",
-      "<url>"
-    ],
-    "answer": [1],
-    "time": 20
-  },
-  {
-    "question": "Quel attribut définit l’identifiant unique d’un élément HTML ?",
-    "options": [
-      "class",
-      "id",
-      "name",
-      "type"
-    ],
-    "answer": [1],
-    "time": 20
-  },
-  {
-    "question": "Quelle balise est utilisée pour insérer une image ?",
-    "options": [
-      "<img>",
-      "<picture>",
-      "<src>",
-      "<image>"
-    ],
-    "answer": [0],
-    "time": 25
-  },
-  {
-    "question": "Comment créer une liste non ordonnée ?",
-    "options": [
-      "<ol>",
-      "<ul>",
-      "<li>",
-      "<list>"
-    ],
-    "answer": [1],
-    "time": 20
-  },
-  {
-    "question": "Peut-on imbriquer des balises <p> à l'intérieur d'autres <p> ?",
-    "options": [
-      "Oui, toujours",
-      "Non, c’est invalide",
-      "Seulement si elles ont un id",
-      "Seulement dans HTML5"
-    ],
-    "answer": [1],
-    "time": 15
-  },
-  {
-    "question": "Quel attribut HTML est utilisé pour spécifier une couleur de texte ?",
-    "options": [
-      "font",
-      "color",
-      "text-color",
-      "bgcolor"
-    ],
-    "answer": [1],
-    "time": 15
-  },
-  {
-    "question": "Quel élément HTML est utilisé pour créer un bouton ?",
-    "options": [
-      "<input type='button'>",
-      "<button>",
-      "Les deux",
-      "<click>"
-    ],
-    "answer": [2],
-    "time": 20
-  },
-  {
-    "question": "Comment ajouter un commentaire en HTML ?",
-    "options": [
-      "// Ceci est un commentaire",
-      "/* Ceci est un commentaire */",
-      "<!-- Ceci est un commentaire -->",
-      "# Ceci est un commentaire"
-    ],
-    "answer": [2],
-    "time": 15
-  },
-  {
-    "question": "Quelle balise HTML est utilisée pour le contenu principal d’une page ?",
-    "options": [
-      "<main>",
-      "<body>",
-      "<section>",
-      "<header>"
-    ],
-    "answer": [0],
-    "time": 20
-  }
-]
+{
+  "theme": "JavaScript",
+  "questions": [
+    {
+      "question": "Quel mot-clé est utilisé pour déclarer une variable en JavaScript ?",
+      "options": ["var", "let", "const", "all of the above"],
+      "answer": [0, 1, 2, 3],
+      "time": 30
+    },
+    {
+      "question": "Quelle méthode est utilisée pour afficher un message dans la console ?",
+      "options": ["print()", "console.log()", "echo()", "alert()"],
+      "answer": [1, 3],
+      "time": 50
+    },
+    {
+      "question": "Quel type de langage est JavaScript ?",
+      "options": ["Compilé", "Interprété", "Binaire", "Assembleur"],
+      "answer": [1],
+      "time": 120
+    },
+    {
+      "question": "Comment écrire un commentaire sur une seule ligne en JavaScript ?",
+      "options": ["<!-- commentaire -->", "// commentaire", "/* commentaire */", "# commentaire"],
+      "answer": [1, 2],
+      "time": 40
+    },
+    {
+      "question": "Quelle fonction convertit une chaîne en entier ?",
+      "options": ["parseInt()", "parseFloat()", "Number()", "toInteger()"],
+      "answer": [0, 2],
+      "time": 56
+    },
+    {
+      "question": "Quels types de boucles existent en JavaScript ?",
+      "options": ["for", "while", "loop", "do...while"],
+      "answer": [0, 1, 3],
+      "time": 60
+    },
+    {
+      "question": "Quelles méthodes peuvent être utilisées pour manipuler un tableau ?",
+      "options": ["push()", "pop()", "append()", "shift()"],
+      "answer": [0, 1, 3],
+      "time": 70
+    },
+    {
+      "question": "Quelles instructions peuvent être utilisées pour gérer les conditions ?",
+      "options": ["if", "switch", "while", "else"],
+      "answer": [0, 1, 3],
+      "time": 50
+    },
+    {
+      "question": "Quels types de données sont primitifs en JavaScript ?",
+      "options": ["Number", "String", "Object", "Boolean"],
+      "answer": [0, 1, 3],
+      "time": 55
+    },
+    {
+      "question": "Quelles méthodes sont utilisées pour parcourir un tableau ?",
+      "options": ["for", "forEach()", "map()", "while"],
+      "answer": [0, 1, 2, 3],
+      "time": 65
+    }
+  ]
+}

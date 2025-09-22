@@ -1,5 +1,5 @@
 
-let categories =["JAVASCRIPT","CSS","HTML"];
+let categories =["Javascript","CSS","HTML"];
 let quizesContainer = document.querySelector('.quizes');
 let NameContainer = document.querySelector('.name-div');
 let nameInput = document.querySelector('.username');

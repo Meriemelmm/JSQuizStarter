@@ -1,0 +1,124 @@
+{
+  "theme": "Html",
+  "questions": [
+
+    {
+      "question": "Quelle est la différence entre HTML et CSS ?",
+      "options": [
+        "HTML organise et structure le contenu, CSS gère son apparence",
+        "HTML s’occupe uniquement du design",
+        "CSS est un langage de programmation",
+        "HTML remplace CSS dans la mise en forme"
+      ],
+      "answer": [0],
+      "time": 60
+    },
+    {
+      "question": "Quelle est la différence entre HTML et JavaScript ?",
+      "options": [
+        "HTML structure la page, JavaScript ajoute de l’interactivité",
+        "HTML et JavaScript font la même chose",
+        "JavaScript est utilisé pour créer du style comme CSS",
+        "HTML est plus rapide que JavaScript"
+      ],
+      "answer": [0],
+      "time": 70
+    },
+    {
+      "question": "Qu’est-ce qu’un attribut en HTML ?",
+      "options": [
+        "C’est une propriété d’une balise qui modifie son comportement",
+        "C’est un style appliqué automatiquement",
+        "C’est une commande JavaScript intégrée",
+        "C’est un langage séparé du HTML"
+      ],
+      "answer": [0],
+      "time": 45
+    },
+    {
+      "question": "Est-ce que HTML est sensible à la casse (majuscules/minuscules) ?",
+      "options": [
+        "Oui, toutes les balises doivent être écrites en majuscules",
+        "Non, HTML n’est pas sensible à la casse",
+        "Seulement pour les balises",
+        "Seulement pour les attributs"
+      ],
+      "answer": [1],
+      "time": 35
+    },
+    {
+      "question": "À quoi sert la déclaration <!DOCTYPE html> ?",
+      "options": [
+        "Elle indique au navigateur la version de HTML utilisée",
+        "C’est une balise qui affiche un titre",
+        "C’est une commande JavaScript spéciale",
+        "Elle n’a aucune utilité"
+      ],
+      "answer": [0],
+      "time": 50
+    },
+    {
+      "question": "Quelle est la particularité des balises auto-fermantes en HTML ?",
+      "options": [
+        "Elles n’ont pas besoin de balise de fermeture",
+        "Elles doivent obligatoirement avoir un attribut",
+        "Elles ne fonctionnent que dans CSS",
+        "Elles sont invisibles pour le navigateur"
+      ],
+      "answer": [0],
+      "time": 40
+    },
+    {
+      "question": "Quelle est la différence entre une liste ordonnée et une liste non ordonnée ?",
+      "options": [
+        "Une liste ordonnée utilise des numéros, une liste non ordonnée utilise des puces",
+        "Une liste ordonnée utilise des puces, une liste non ordonnée utilise des numéros",
+        "Une liste ordonnée est horizontale, une liste non ordonnée est verticale",
+        "Il n’y a aucune différence"
+      ],
+      "answer": [0],
+      "time": 60
+    },
+    {
+      "question": "Pourquoi HTML est-il important dans le développement web ?",
+      "options": [
+        "Parce qu’il permet de structurer et d’organiser le contenu d’un site web",
+        "Parce qu’il applique automatiquement des styles visuels",
+        "Parce qu’il remplace tous les autres langages",
+        "Parce qu’il exécute des calculs complexes"
+      ],
+      "answer": [0],
+      "time": 55
+    },
+    {
+      "question": "Quelles balises sont utilisées pour créer une table en HTML ?",
+      "options": ["<table>", "<tr>", "<td>", "<ul>"],
+      "answer": [0, 1, 2],
+      "time": 60
+    },
+    {
+      "question": "Quels attributs peuvent être utilisés avec une image en HTML ?",
+      "options": ["src", "alt", "href", "title"],
+      "answer": [0, 1, 3],
+      "time": 50
+    },
+    {
+      "question": "Quelles balises sont utilisées pour insérer du contenu multimédia ?",
+      "options": ["<audio>", "<video>", "<img>", "<link>"],
+      "answer": [0, 1, 2],
+      "time": 55
+    },
+    {
+      "question": "Quels éléments peuvent être utilisés dans un formulaire HTML ?",
+      "options": ["<input>", "<textarea>", "<button>", "<script>"],
+      "answer": [0, 1, 2],
+      "time": 65
+    },
+    {
+      "question": "Quels types de listes existent en HTML ?",
+      "options": ["Liste ordonnée", "Liste non ordonnée", "Liste de définition", "Liste de style"],
+      "answer": [0, 1, 2],
+      "time": 60
+    }
+  ]
+}
