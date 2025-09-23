@@ -1,14 +1,14 @@
 
-
-  console.log("history js est bien lire");
+ import  {fetchData} from './utile.js';
+  
 
 
 let username= document.querySelector('.username');
-console.log(username);
+
 username.textContent=localStorage.getItem('username');
 let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
  let LastHistory= history[history.length-1];
- console.log("quizData",history);
+ 
  let scoreq= document.querySelector('.score');
  let totalq=document.querySelector('.total');
  
@@ -16,11 +16,21 @@ scoreq.textContent=LastHistory.score;
 totalq.textContent=LastHistory.totalQuestions;
 let results= document.querySelector('.results');
 
-let cat=localStorage.getItem('category');
-// let QuestionCatego= QuizData[cat];
+let category=localStorage.getItem('category');
+;
 let Restart= document.querySelector('.Restart');
 let arrive= document.querySelector('.arriver');
-console.log("cat",cat);
+
+   let QuestionCatego;
+  async function loadQuestions(){
+    QuestionCatego=await fetchData(category); 
+    console.log("questions",QuestionCatego);
+  }
+  loadQuestions();
+  
+
+  
+
 
 
 // let answerUser= LastHistory.answerUser;

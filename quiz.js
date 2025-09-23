@@ -1,3 +1,7 @@
+import {fetchData,starTimer}  from './utile.js'; 
+
+
+
 let question = document.querySelector('.question');
 let propositions = document.querySelectorAll('.propos');
 let answeroption = document.querySelectorAll('input[name="option"]');
@@ -21,7 +25,7 @@ let theme = localStorage.getItem("category");
   let intervalId;
    let totalQuestions ;
     let TimeGlobal;
-    let timeLeft=0;
+ 
     // afiches lesquestions et les options:
     function showQuestion(i) {
     clearInterval(intervalId); 
@@ -44,40 +48,29 @@ let theme = localStorage.getItem("category");
     let countime = questions[i].time;
     time.innerHTML = countime;
 
-    intervalId = setInterval(() => {
-      countime--;
-      time.innerHTML = countime;
+  //   intervalId = setInterval(() => {
+  //     countime--;
+  //     time.innerHTML = countime;
 
-      if (countime <= 0) {
-        clearInterval(intervalId);
+  //     if (countime <= 0) {
+  //       clearInterval(intervalId);
       
-        validateAnswer(true); 
-      }
-    }, 1000);
-  }
+  //       validateAnswer(true); 
+  //     }
+  //   }, 1000);
+  // }
+  intervalId=starTimer("secondes",countime,time,()=>{validateAnswer(true)});}
 
-//  fucntion recupere data dynamique:
 
-  async function fetchData(theme){
-    const response=await fetch("DataJson/"+theme+".json");
-    try{
-         let  data= await response.json();
-          return data.questions;
-        
-  
-         
-    }
-    catch(eroor){
-        console.log("Error",eroor);
-    }
-}
+
+
 // afiches les questions et les options:
  
 
 
 
 async function main() {
-   
+    clearInterval(intervalId);
     questions = await fetchData(theme);
 
          totalQuestions=questions.length;
@@ -100,7 +93,9 @@ globalTime.innerHTML= minutes+":"+secondes;
     if (questions.length > 0) {
         showQuestion(index);
     }
-    startGlobalTimer();
+  intervalId=starTimer("minutes",TimeGlobal,globalTime,()=>{
+    window.location.href="History.html";
+  })  ;
 }
 // fucntion  chrono timer global :
 function startGlobalTimer() {
