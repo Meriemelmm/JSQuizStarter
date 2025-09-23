@@ -5,61 +5,61 @@
       "question": "Quel mot-clé est utilisé pour déclarer une variable en JavaScript ?",
       "options": ["var", "let", "const", "all of the above"],
       "answer": [0, 1, 2, 3],
-      "time": 30
+      "time": 10
     },
     {
       "question": "Quelle méthode est utilisée pour afficher un message dans la console ?",
       "options": ["print()", "console.log()", "echo()", "alert()"],
       "answer": [1, 3],
-      "time": 50
+      "time": 10
     },
     {
       "question": "Quel type de langage est JavaScript ?",
       "options": ["Compilé", "Interprété", "Binaire", "Assembleur"],
       "answer": [1],
-      "time": 120
+      "time": 10
     },
     {
       "question": "Comment écrire un commentaire sur une seule ligne en JavaScript ?",
       "options": ["<!-- commentaire -->", "// commentaire", "/* commentaire */", "# commentaire"],
       "answer": [1, 2],
-      "time": 40
+      "time": 10
     },
     {
       "question": "Quelle fonction convertit une chaîne en entier ?",
       "options": ["parseInt()", "parseFloat()", "Number()", "toInteger()"],
       "answer": [0, 2],
-      "time": 56
+      "time": 20
     },
     {
       "question": "Quels types de boucles existent en JavaScript ?",
       "options": ["for", "while", "loop", "do...while"],
       "answer": [0, 1, 3],
-      "time": 60
+      "time": 10
     },
     {
       "question": "Quelles méthodes peuvent être utilisées pour manipuler un tableau ?",
       "options": ["push()", "pop()", "append()", "shift()"],
       "answer": [0, 1, 3],
-      "time": 70
+      "time": 10
     },
     {
       "question": "Quelles instructions peuvent être utilisées pour gérer les conditions ?",
       "options": ["if", "switch", "while", "else"],
       "answer": [0, 1, 3],
-      "time": 50
+      "time": 10
     },
     {
       "question": "Quels types de données sont primitifs en JavaScript ?",
       "options": ["Number", "String", "Object", "Boolean"],
       "answer": [0, 1, 3],
-      "time": 55
+      "time": 5
     },
     {
       "question": "Quelles méthodes sont utilisées pour parcourir un tableau ?",
       "options": ["for", "forEach()", "map()", "while"],
       "answer": [0, 1, 2, 3],
-      "time": 65
+      "time": 10
     }
   ]
 }

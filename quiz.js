@@ -6,9 +6,10 @@ let current = document.querySelector('.current');
 let total = document.querySelector('.total');
 let time = document.querySelector('.time');
 let answerQuestions=[];
-nameCategory=document.querySelector('.name-cat');
+ let nameCategory=document.querySelector('.name-cat');
 
-
+ let globalTime=document.querySelector('.global-time');
+ console.log(globalTime);
 
 let theme = localStorage.getItem("category");
 
@@ -20,6 +21,7 @@ let theme = localStorage.getItem("category");
   let intervalId;
    let totalQuestions ;
     let TimeGlobal;
+    let timeLeft=0;
     // afiches lesquestions et les options:
     function showQuestion(i) {
     clearInterval(intervalId); 
@@ -49,16 +51,17 @@ let theme = localStorage.getItem("category");
       if (countime <= 0) {
         clearInterval(intervalId);
       
-        // validateAnswer(true); 
+        validateAnswer(true); 
       }
     }, 1000);
   }
+
 //  fucntion recupere data dynamique:
 
   async function fetchData(theme){
     const response=await fetch("DataJson/"+theme+".json");
     try{
-         data= await response.json();
+         let  data= await response.json();
           return data.questions;
         
   
@@ -71,6 +74,8 @@ let theme = localStorage.getItem("category");
 // afiches les questions et les options:
  
 
+
+
 async function main() {
    
     questions = await fetchData(theme);
@@ -78,10 +83,15 @@ async function main() {
          totalQuestions=questions.length;
          nameCategory.innerHTML=theme;
          total.innerHTML = totalQuestions;
+         
           TimeGlobal=questions.reduce((total ,q) => {
   return total += q.time;
 }, 0);
-console.log(TimeGlobal);
+console.log("TimeGlobal",TimeGlobal);
+let minutes = parseInt(TimeGlobal / 60, 10);
+let secondes = parseInt(TimeGlobal % 60, 10);
+globalTime.innerHTML= minutes+":"+secondes;
+
       
       
  totalQuestions= questions.length;
@@ -90,7 +100,96 @@ console.log(TimeGlobal);
     if (questions.length > 0) {
         showQuestion(index);
     }
+    startGlobalTimer();
 }
+// fucntion  chrono timer global :
+function startGlobalTimer() {
+   let timeLeft = setInterval(() => {
+      let minutes = parseInt(TimeGlobal / 60, 10);
+  let secondes = parseInt(TimeGlobal % 60, 10);
+    
+      globalTime.innerText = minutes+":"+secondes;
+        TimeGlobal--;
+
+      if (TimeGlobal <= 0) {
+         clearInterval(timeLeft); 
+         console.log("time is up");
+         window.location.href = "History.html"; 
+      }
+   }, 1000);
+}
+ function validateAnswer(auto = false) {
+    clearInterval(intervalId); 
+    let selected = [];
+
+    if (!auto) {
+      answeroption.forEach((option) => {
+        if (option.checked) {
+          selected.push(parseInt(option.value));
+         
+        }
+      }); 
+       answerQuestions.push(selected);
+    }
+    console.log("answer",answerQuestions);
+
+    let answers = questions[index].answer; 
+   
+   
+    answeroption.forEach((option) => {
+      let value = parseInt(option.value);
+      option.disabled = true; 
+      if (answers.includes(value)) {
+        option.nextElementSibling.classList.add('correct');
+      }
+      if (option.checked && !answers.includes(value)) {
+        option.nextElementSibling.classList.add('wrong');
+      }
+    });
+
+   
+    if (!auto && JSON.stringify(selected.sort()) === JSON.stringify(answers.sort())) {
+      score++;
+    }
+
+    next.textContent = "Next";
+    mode = "next";
+  }
+   function nextQuestion() {
+    index++;
+    if (index < questions.length) {
+      showQuestion(index);
+    } else {
+      
+     
+
+      let username = localStorage.getItem("username");
+      let theme = localStorage.getItem("category");
+
+      let result = {
+        username: username,
+        theme: theme,
+        score: score,
+        totalQuestions:totalQuestions,
+        date: new Date().toLocaleString(),
+        answerUser:answerQuestions
+      };
+
+      let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+      history.push(result);
+      localStorage.setItem("quizHistory", JSON.stringify(history));
+
+      next.style.display = "none";
+      window.location.href = "History.html";
+    }
+  }
+   next.addEventListener("click", () => {
+    if (mode === "validate") {
+      validateAnswer();
+    } else if (mode === "next") {
+      nextQuestion();
+    }
+  });
 main();
      
 
