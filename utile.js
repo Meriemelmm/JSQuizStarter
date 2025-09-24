@@ -1,4 +1,6 @@
    
+   export  let  history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+   export let categories =["Javascript","CSS","HTML"];
 //    fetch data  from json file :
 
    
@@ -26,11 +28,13 @@ export function starTimer(type="minutes",time,timeElement,onfinish){
          else{
         let minutes=parseInt(time/60,10);
         let secondes=parseInt(time%60,10);
-        timeElement.innerText=minutes+":"+secondes;}
+       timeElement.innerText = `${minutes}:${secondes.toString().padStart(2,"0")}`;
+    }
         time--;
         if(time <=0){
             clearInterval(timeLeft);
             if(onfinish){onfinish();}
         }
     }, 1000);
+     return timeLeft;
 }

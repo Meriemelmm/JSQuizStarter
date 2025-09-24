@@ -1,5 +1,5 @@
 
-let categories =["Javascript","CSS","HTML"];
+import {categories } from './utile.js'
 let quizesContainer = document.querySelector('.quizes');
 let NameContainer = document.querySelector('.name-div');
 let nameInput = document.querySelector('.username');
@@ -29,13 +29,14 @@ if (quizesContainer) {
       localStorage.setItem("category", btn.dataset.category);
       let username = localStorage.getItem("username");
 
-      if (!username) {
+      // if (!username) {
        
-        NameContainer.style.display = "block";
-      } else {
+      //   NameContainer.style.display = "block";
+      // } else {
        
-        window.location.href = "quiz.html";
-      }
+      //   window.location.href = "quiz.html";
+      // }
+      NameContainer.style.display="block";
     });
   });
 

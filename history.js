@@ -1,12 +1,12 @@
 
- import  {fetchData} from './utile.js';
+ import  {fetchData,history} from './utile.js';
   
-
+ console.log("history database",history);
 
 let username= document.querySelector('.username');
 
 username.textContent=localStorage.getItem('username');
-let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+
  let LastHistory= history[history.length-1];
  
  let scoreq= document.querySelector('.score');
@@ -23,58 +23,66 @@ let arrive= document.querySelector('.arriver');
 
    let QuestionCatego;
   async function loadQuestions(){
-    QuestionCatego=await fetchData(category); 
-    console.log("questions",QuestionCatego);
+ QuestionCatego=await fetchData(category); 
+ console.log("dataQuestio",QuestionCatego);
+ console.log("hello");
+    Feedback(QuestionCatego);
   }
-  loadQuestions();
+
+
+
   
+// function qui afiche le feedback(question reponce correct et incorrect):
+ function Feedback(QuestionCatego){
 
+let answerUser= LastHistory.answerUser;
+console.log("answesUser",answerUser);
+
+
+
+
+results.innerHTML = QuestionCatego.map((q,idx) => {
   
+    let CorrectAnswers = q.answer.map(index => q.options[index]).join(', ');
 
-
-
-// let answerUser= LastHistory.answerUser;
-// console.log("les reponses de  user",answerUser);
-
-
-// results.innerHTML = QuestionCatego.map((q, idx) => {
-  
-//     let CorrectAnswers = q.answer.map(index => q.options[index]).join(', ');
-
-//     let UserAnswers = answerUser[idx].map(index => {
-//         let optionText = q.options[index];
-//         if (q.answer.includes(index)) {
+    let UserAnswers = (answerUser[idx])? answerUser[idx].map(index => {
+        let optionText = q.options[index];
+        if (q.answer.includes(index)) {
             
-//             return `<span class="optCorrect">${optionText}</span>`;
-//         } else {
+            return `<span class="optCorrect">${optionText}</span>`;
+        } else {
            
-//             return `<span class="optWrong">${optionText}</span>`;
-//         }
-//     }).join(', ');
+            return `<span class="optWrong">${optionText}</span>`;
+        }
+    }).join(', '):"not answered";
 
-//     return `
-//       <div class="correction">
-//           <p>${q.question}</p>
-//           <div class="userAnswer">Votre réponse : <strong>${UserAnswers}</strong></div>
-//           <div class="correctAnswer">Les réponses correctes :  <strong>${CorrectAnswers}</strong></div>
-//       </div>
-//     `;
-// }).join('');
-// // verifier cette partie  de  restart :
+    return `
+      <div class="correction">
+          <p>${q.question}</p>
+          <div class="userAnswer">Votre réponse : <strong>${UserAnswers}</strong></div>
+          <div class="correctAnswer">Les réponses correctes :  <strong>${CorrectAnswers}</strong></div>
+      </div>
+    `;
+}).join('');
 
-// arrive.addEventListener('click',()=>{
-//      window.location.href = "index.html";
-// })
+
+ }
+   loadQuestions();
+
+
+
+arrive.addEventListener('click',()=>{
+     window.location.href = "index.html";
+})
  
-//  Restart.addEventListener('click',()=>{
+ Restart.addEventListener('click',()=>{
 
-//  console.log("vou etes sur de faire  recommencer ");
+ console.log("vou etes sur de faire  recommencer ");
 
-//  })
-//  let fruits = ["pomme", "banane", "orange", "kiwi"];
+ })
 
-// let randomIndex = Math.floor(Math.random() * fruits.length);
-// let randomFruit = fruits[randomIndex];
+
+;
 
 
 

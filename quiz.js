@@ -25,10 +25,12 @@ let theme = localStorage.getItem("category");
   let intervalId;
    let totalQuestions ;
     let TimeGlobal;
+    let questionTimerId;   
+let globalTimerId; 
  
     // afiches lesquestions et les options:
     function showQuestion(i) {
-    clearInterval(intervalId); 
+    clearInterval(questionTimerId); 
     question.innerHTML = questions[i].question;
 
     
@@ -59,7 +61,7 @@ let theme = localStorage.getItem("category");
   //     }
   //   }, 1000);
   // }
-  intervalId=starTimer("secondes",countime,time,()=>{validateAnswer(true)});}
+  questionTimerId=starTimer("secondes",countime,time,()=>{validateAnswer(true)});}
 
 
 
@@ -70,7 +72,7 @@ let theme = localStorage.getItem("category");
 
 
 async function main() {
-    clearInterval(intervalId);
+    clearInterval(globalTimerId);
     questions = await fetchData(theme);
 
          totalQuestions=questions.length;
@@ -93,7 +95,7 @@ globalTime.innerHTML= minutes+":"+secondes;
     if (questions.length > 0) {
         showQuestion(index);
     }
-  intervalId=starTimer("minutes",TimeGlobal,globalTime,()=>{
+  globalTimerId=starTimer("minutes",TimeGlobal,globalTime,()=>{
     window.location.href="History.html";
   })  ;
 }
@@ -114,7 +116,10 @@ function startGlobalTimer() {
    }, 1000);
 }
  function validateAnswer(auto = false) {
-    clearInterval(intervalId); 
+  clearInterval(questionTimerId);
+  
+  console.log("time pour chaque q ",questionTimerId);
+   
     let selected = [];
 
     if (!auto) {
