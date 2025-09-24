@@ -25,3 +25,4 @@ let statsParTheme = calculerStats(history, categories);
 
 
 
+
