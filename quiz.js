@@ -1,10 +1,11 @@
 import {fetchData,starTimer}  from './utile.js'; 
+import { createQuestionUI,updateCurrentTotal,updateGlobalTimer } from './ui.js';
 
 
 
 let question = document.querySelector('.question');
-let propositions = document.querySelectorAll('.propos');
-let answeroption = document.querySelectorAll('input[name="option"]');
+// let propositions = document.querySelectorAll('.propos');
+// let answeroption = document.querySelectorAll('input[name="option"]');
 let next = document.querySelector('.next');
 let current = document.querySelector('.current');
 let total = document.querySelector('.total');
@@ -16,6 +17,9 @@ let answerQuestions=[];
  console.log(globalTime);
 
 let theme = localStorage.getItem("category");
+const container=document.querySelector('.container-question');
+
+
 
 
   let index = 0;
@@ -31,36 +35,28 @@ let globalTimerId;
     // afiches lesquestions et les options:
     function showQuestion(i) {
     clearInterval(questionTimerId); 
-    question.innerHTML = questions[i].question;
+    // question.innerHTML = questions[i].question;
 
-    
-    propositions.forEach((proposition, j) => {
-      proposition.querySelector('input').value = j;
-      proposition.querySelector('input').checked = false;
-      proposition.querySelector('input').disabled = false;
-      proposition.querySelector('label').classList.remove('correct', 'wrong');
-      proposition.querySelector('label').innerHTML = questions[i].options[j];
-    });
-
-    current.innerHTML = i + 1;
+   console.log("test",questions);
+    // propositions.forEach((proposition, j) => {
+    //   proposition.querySelector('input').value = j;
+    //   proposition.querySelector('input').checked = false;
+    //   proposition.querySelector('input').disabled = false;
+    //   proposition.querySelector('label').classList.remove('correct', 'wrong');
+    //   proposition.querySelector('label').innerHTML = questions[i].options[j];
+    // });
+    let questionData=questions[i];
+    console.log("hellooo");
+ createQuestionUI(container,questionData);
+   updateCurrentTotal(current, total, i + 1, totalQuestions);
+ console.log("hellossjsj");
+    // current.innerHTML = i + 1;
     next.textContent = "Valider";
     mode = "validate";
 
     
     let countime = questions[i].time;
     time.innerHTML = countime;
-
-  //   intervalId = setInterval(() => {
-  //     countime--;
-  //     time.innerHTML = countime;
-
-  //     if (countime <= 0) {
-  //       clearInterval(intervalId);
-      
-  //       validateAnswer(true); 
-  //     }
-  //   }, 1000);
-  // }
   questionTimerId=starTimer("secondes",countime,time,()=>{validateAnswer(true)});}
 
 
@@ -77,19 +73,20 @@ async function main() {
 
          totalQuestions=questions.length;
          nameCategory.innerHTML=theme;
-         total.innerHTML = totalQuestions;
+        //  total.innerHTML = totalQuestions;
          
           TimeGlobal=questions.reduce((total ,q) => {
   return total += q.time;
 }, 0);
-console.log("TimeGlobal",TimeGlobal);
-let minutes = parseInt(TimeGlobal / 60, 10);
-let secondes = parseInt(TimeGlobal % 60, 10);
-globalTime.innerHTML= minutes+":"+secondes;
+// console.log("TimeGlobal",TimeGlobal);
+// let minutes = parseInt(TimeGlobal / 60, 10);
+// let secondes = parseInt(TimeGlobal % 60, 10);
+// globalTime.innerHTML= minutes+":"+secondes;
+  updateGlobalTimer(globalTime, TimeGlobal);
 
       
       
- totalQuestions= questions.length;
+//  totalQuestions= questions.length;
 
  showQuestion(index);
     if (questions.length > 0) {
@@ -99,22 +96,7 @@ globalTime.innerHTML= minutes+":"+secondes;
     window.location.href="History.html";
   })  ;
 }
-// fucntion  chrono timer global :
-function startGlobalTimer() {
-   let timeLeft = setInterval(() => {
-      let minutes = parseInt(TimeGlobal / 60, 10);
-  let secondes = parseInt(TimeGlobal % 60, 10);
-    
-      globalTime.innerText = minutes+":"+secondes;
-        TimeGlobal--;
 
-      if (TimeGlobal <= 0) {
-         clearInterval(timeLeft); 
-         console.log("time is up");
-         window.location.href = "History.html"; 
-      }
-   }, 1000);
-}
  function validateAnswer(auto = false) {
   clearInterval(questionTimerId);
   
@@ -191,9 +173,4 @@ function startGlobalTimer() {
     }
   });
 main();
-     
-
-
-
-
 

@@ -6,41 +6,41 @@ let nameInput = document.querySelector('.username');
 let form = document.querySelector('.NameForm');
 
 if (quizesContainer) {
-  // On cache le formulaire au départ
+  
   NameContainer.style.display = "none";
 
-  // Création dynamique des quiz
+
   categories.forEach(theme => {
     // Crée le container principal
     let quizDiv = document.createElement('div');
     quizDiv.classList.add('quiz');
 
-    // Crée le titre
+    // create le titre
     let h2 = document.createElement('h2');
     h2.textContent = `${theme} Quiz`;
 
-    // Crée la div pour le bouton
+    // create la div pour le bouton
     let startDiv = document.createElement('div');
     startDiv.classList.add('start-div');
 
-    // Crée le bouton
+    // create le bouton
     let button = document.createElement('button');
     button.classList.add('start');
     button.dataset.category = theme;
 
-    // Ajout d’un icône et du texte
+    // add d’un icône et du texte
     let icon = document.createElement('i');
     icon.classList.add('fas', 'fa-play');
     button.appendChild(icon);
     button.appendChild(document.createTextNode(" Commencer"));
 
-    // Assemble le tout
+   
     startDiv.appendChild(button);
     quizDiv.appendChild(h2);
     quizDiv.appendChild(startDiv);
     quizesContainer.appendChild(quizDiv);
 
-    // Événement au clic sur le bouton
+  
     button.addEventListener('click', () => {
       localStorage.setItem("category", theme);
       NameContainer.style.display = "block";

@@ -162,14 +162,14 @@ h2{
 .container-question{
   background-color: var(--gray-light);
   height:auto;
-  width:80%;
+  width:70%;
   margin:0 auto;
   display:flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-top: 6rem;
-  min-height:70vh;
+  min-height:60vh;
   gap:1.5rem;
 
 }
@@ -334,6 +334,7 @@ border-radius: 10% 30% 50% 70%;
 
 
 }
+
 form{
   width:100%;
 
@@ -373,6 +374,7 @@ color:white;
   padding:0.5rem;
   opacity: 1;        
 }
+.glo
 
 @media(max-width:1024px){
   .quizes{

@@ -3,18 +3,24 @@
  
 import { history, categories } from './utile.js';
 
-console.log("Catégories disponibles :", categories);
-console.log("Historique des parties :", history);
+function calculerStats(history, categories) {
+    let stats = categories.map(theme => {
+        let parties = history.filter(h => h.theme === theme);
+        let totalJoueurs = parties.length;
+        let scoreTotal = parties.reduce((sum, p) => sum + p.score, 0);
+        let scoreMoyen = parties.length ? scoreTotal / parties.length : 0;
+        return {
+            theme: theme,
+            totalJoueurs: totalJoueurs,
+            scoreMoyen: scoreMoyen
+        };
+    });
+    return stats;
+}
+let statsParTheme = calculerStats(history, categories);
 
-let firstStat = categories.map(category => {
- 
-  let historyFiltered = history.filter(e => e.theme === category);
 
-  return {
-    theme: category,
-    total: historyFiltered.length
-  };
-});
+
 
 
 
