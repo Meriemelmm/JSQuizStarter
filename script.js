@@ -1,50 +1,57 @@
+import { categories } from './utile.js';
 
-import {categories } from './utile.js'
 let quizesContainer = document.querySelector('.quizes');
 let NameContainer = document.querySelector('.name-div');
 let nameInput = document.querySelector('.username');
 let form = document.querySelector('.NameForm');
 
-
 if (quizesContainer) {
-  
- 
-  quizesContainer.innerHTML = categories.map(theme => `
-    <div class="quiz">
-      <h2>${theme} Quiz</h2>
-      <div class="start-div">
-        <button class="start" data-category="${theme}">
-          <i class="fas fa-play"></i> Commencer
-        </button>
-      </div>
-    </div>
-  `).join("");
+  // On cache le formulaire au départ
   NameContainer.style.display = "none";
-  
- 
 
-  
-  document.querySelectorAll('.start').forEach(btn => {
-    btn.addEventListener('click', () => {
-      localStorage.setItem("category", btn.dataset.category);
-      let username = localStorage.getItem("username");
+  // Création dynamique des quiz
+  categories.forEach(theme => {
+    // Crée le container principal
+    let quizDiv = document.createElement('div');
+    quizDiv.classList.add('quiz');
 
-      // if (!username) {
-       
-      //   NameContainer.style.display = "block";
-      // } else {
-       
-      //   window.location.href = "quiz.html";
-      // }
-      NameContainer.style.display="block";
+    // Crée le titre
+    let h2 = document.createElement('h2');
+    h2.textContent = `${theme} Quiz`;
+
+    // Crée la div pour le bouton
+    let startDiv = document.createElement('div');
+    startDiv.classList.add('start-div');
+
+    // Crée le bouton
+    let button = document.createElement('button');
+    button.classList.add('start');
+    button.dataset.category = theme;
+
+    // Ajout d’un icône et du texte
+    let icon = document.createElement('i');
+    icon.classList.add('fas', 'fa-play');
+    button.appendChild(icon);
+    button.appendChild(document.createTextNode(" Commencer"));
+
+    // Assemble le tout
+    startDiv.appendChild(button);
+    quizDiv.appendChild(h2);
+    quizDiv.appendChild(startDiv);
+    quizesContainer.appendChild(quizDiv);
+
+    // Événement au clic sur le bouton
+    button.addEventListener('click', () => {
+      localStorage.setItem("category", theme);
+      NameContainer.style.display = "block";
     });
   });
 
-  // gestion d form  nom
+  // Gestion du formulaire
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     let nom = nameInput.value.trim();
-    if (nom === "") {
+    if (!nom) {
       alert("Veuillez entrer un nom !");
       return;
     }
