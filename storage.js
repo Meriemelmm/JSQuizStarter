@@ -13,21 +13,30 @@ export function getItem(key) {
  
 }
 
+
 export function removeItem(key) {
   localStorage.removeItem(key);
 }
 export function saveQuizResult(result) {
-    try{
-     let history = getItem("quizHistory", []);
-  history.push(result);
-  saveItem("quizHistory", history);   
-    }catch(error){
-      console.error("Error saving quiz result", error);
+    try {
+        // récupérer l'historique s'il existe
+        let history = getItem("quizHistory");
+        if (!history) {
+            history = [];
+        }
+
+        // ajouter le nouveau résultat
+        history.push(result);
+
+        // sauvegarder
+        setItem("quizHistory", history);
+    } catch (error) {
+        console.error("Error saving quiz result", error);
     }
-  
 }
 
 
+
 export function getQuizHistory() {
-  return getItem("quizHistory", []);
+  return getItem("quizHistory");
 }

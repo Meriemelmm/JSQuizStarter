@@ -123,7 +123,14 @@ async function main() {
         date: new Date().toLocaleString(),
         answerUser:answerQuestions
       };
-        saveQuizResult(result);
+     
+       
+        try{
+ saveQuizResult(result);
+        }
+        catch(error){
+          console.error("Error saving quiz result", error);
+        }
       
       next.style.display = "none";
       window.location.href = "History.html";
