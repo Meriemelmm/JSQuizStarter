@@ -10,35 +10,35 @@ console.log("name",name);
 let History=getQuizHistory();
 console.log("history database",History);
 
-// username.textContent=localStorage.getItem('username');
-//  let History=getQuizHistory();
-// console.log("history database",History);
-//  let LastHistory= History[History.length-1];
- 
-//  let scoreq= document.querySelector('.score');
-//  let totalq=document.querySelector('.total');
- 
-// scoreq.textContent=LastHistory.score;
-// totalq.textContent=LastHistory.totalQuestions;
-// let results= document.querySelector('.results');
+username.textContent=localStorage.getItem('username');
 
-// let category=localStorage.getItem('category');
-// ;
-// let Restart= document.querySelector('.Restart');
-// let arrive= document.querySelector('.arriver');
+console.log("history database",History);
+ let LastHistory= History[History.length-1];
+ 
+ let scoreq= document.querySelector('.score');
+ let totalq=document.querySelector('.total');
+ 
+scoreq.textContent=LastHistory.score;
+totalq.textContent=LastHistory.totalQuestions;
+let results= document.querySelector('.results');
 
-//    let QuestionCatego;
-//   async function loadQuestions(){
-//  QuestionCatego=await fetchData(category); 
-//  console.log("dataQuestio",QuestionCatego);
-//  console.log("hello");
-//     Feedback(QuestionCatego);
-//   }
+let category=localStorage.getItem('category');
+;
+let Restart= document.querySelector('.Restart');
+let arrive= document.querySelector('.arriver');
+
+   let QuestionCatego;
+  async function loadQuestions(){
+ QuestionCatego=await fetchData(category); 
+ console.log("dataQuestio",QuestionCatego);
+ console.log("hello");
+    Feedback(QuestionCatego);
+  }
 
 
 
   
-// function qui afiche le feedback(question reponce correct et incorrect):
+
 //  function Feedback(QuestionCatego){
 
 // let answerUser= LastHistory.answerUser;
@@ -89,7 +89,6 @@ console.log("history database",History);
 
 
 // ;
-
 
 
 
