@@ -1,11 +1,17 @@
 
 
  
-import { history, categories } from './utile.js';
+import { categories } from './utile.js';
+import { getQuizHistory } from './storage.js';
+let QuizHstr = getQuizHistory() || [];
+console.log("quiz oshihaja",QuizHstr, Array.isArray(QuizHstr));
 
-function calculerStats(history, categories) {
+console.log("categories",categories);
+co
+ 
+function calculerStats(QuizHstr, categories) {
     let stats = categories.map(theme => {
-        let parties = history.filter(h => h.theme === theme);
+        let parties = QuizHstr.filter((h)=> h.theme === theme);
         let totalJoueurs = parties.length;
         let scoreTotal = parties.reduce((sum, p) => sum + p.score, 0);
         let scoreMoyen = parties.length ? scoreTotal / parties.length : 0;
@@ -20,8 +26,7 @@ function calculerStats(history, categories) {
 let statsParTheme = calculerStats(history, categories);
 
 
-
-
+console.log("statsPartheme" ,statsParTheme);
 
 
 

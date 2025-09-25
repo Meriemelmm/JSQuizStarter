@@ -1,4 +1,5 @@
 import { categories } from './utile.js';
+import { setItem } from './storage.js';
 
 let quizesContainer = document.querySelector('.quizes');
 let NameContainer = document.querySelector('.name-div');
@@ -8,8 +9,6 @@ let form = document.querySelector('.NameForm');
 if (quizesContainer) {
   
   NameContainer.style.display = "none";
-
-
   categories.forEach(theme => {
     // Crée le container principal
     let quizDiv = document.createElement('div');
@@ -42,7 +41,8 @@ if (quizesContainer) {
 
   
     button.addEventListener('click', () => {
-      localStorage.setItem("category", theme);
+      setItem("category",theme);
+
       NameContainer.style.display = "block";
     });
   });
@@ -55,7 +55,8 @@ if (quizesContainer) {
       alert("Veuillez entrer un nom !");
       return;
     }
-    localStorage.setItem("username", nom);
+    // localStorage.setItem("username", nom);
+    setItem("username",nom);
     window.location.href = "quiz.html";
   });
 }

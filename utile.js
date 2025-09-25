@@ -1,5 +1,5 @@
    
-   export  let  history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+
    export let categories =["Javascript","CSS","HTML"];
 //    fetch data  from json file :
 

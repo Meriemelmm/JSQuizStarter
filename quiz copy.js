@@ -2,8 +2,10 @@ import {fetchData,starTimer}  from './utile.js';
 import { createQuestionUI,updateCurrentTotal,updateGlobalTimer } from './ui.js';
 import {setItem,getItem,saveQuizResult} from './storage.js';
 
-let question = document.querySelector('.question');
 
+let question = document.querySelector('.question');
+// let propositions = document.querySelectorAll('.propos');
+// let answeroption = document.querySelectorAll('input[name="option"]');
 let next = document.querySelector('.next');
 let current = document.querySelector('.current');
 let total = document.querySelector('.total');
@@ -12,8 +14,15 @@ let answerQuestions=[];
  let nameCategory=document.querySelector('.name-cat');
 
  let globalTime=document.querySelector('.global-time');
+ console.log(globalTime);
+
+// let theme = localStorage.getItem("category");
 let theme=getItem("category");
+console.log("theme",theme);
 const container=document.querySelector('.container');
+
+
+
 
   let index = 0;
   let score = 0;
@@ -28,12 +37,22 @@ let globalTimerId;
     // afiches lesquestions et les options:
     function showQuestion(i) {
     clearInterval(questionTimerId); 
-   
+    // question.innerHTML = questions[i].question;
+
+   console.log("test",questions);
+    // propositions.forEach((proposition, j) => {
+    //   proposition.querySelector('input').value = j;
+    //   proposition.querySelector('input').checked = false;
+    //   proposition.querySelector('input').disabled = false;
+    //   proposition.querySelector('label').classList.remove('correct', 'wrong');
+    //   proposition.querySelector('label').innerHTML = questions[i].options[j];
+    // });
     let questionData=questions[i];
     console.log("hellooo");
  createQuestionUI(container,questionData);
    updateCurrentTotal(current, total, i + 1, totalQuestions);
  console.log("hellossjsj");
+    // current.innerHTML = i + 1;
     next.textContent = "Valider";
     mode = "validate";
 
@@ -42,7 +61,13 @@ let globalTimerId;
     time.innerHTML = countime;
   questionTimerId=starTimer("secondes",countime,time,()=>{validateAnswer(true)});}
 
+
+
+
 // afiches les questions et les options:
+ 
+
+
 
 async function main() {
     clearInterval(globalTimerId);
@@ -55,7 +80,16 @@ async function main() {
           TimeGlobal=questions.reduce((total ,q) => {
   return total += q.time;
 }, 0);
-  updateGlobalTimer(globalTime, TimeGlobal);    
+// console.log("TimeGlobal",TimeGlobal);
+// let minutes = parseInt(TimeGlobal / 60, 10);
+// let secondes = parseInt(TimeGlobal % 60, 10);
+// globalTime.innerHTML= minutes+":"+secondes;
+  updateGlobalTimer(globalTime, TimeGlobal);
+
+      
+      
+//  totalQuestions= questions.length;
+
  showQuestion(index);
     if (questions.length > 0) {
         showQuestion(index);
@@ -111,7 +145,11 @@ async function main() {
     if (index < questions.length) {
       showQuestion(index);
     } else {
-      clearInterval(globalTimerId);
+      
+     
+
+      // let username = localStorage.getItem("username");
+      // let theme = localStorage.getItem("category");
       let username=getItem("username");
       let theme=getItem("category");
 
@@ -123,8 +161,14 @@ async function main() {
         date: new Date().toLocaleString(),
         answerUser:answerQuestions
       };
+
+      // let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+      // history.push(result);
+      // localStorage.setItem("quizHistory", JSON.stringify(history));
+      // setIteme("quizHistory",history);
         saveQuizResult(result);
-      
+        // console.log("result",result);
+
       next.style.display = "none";
       window.location.href = "History.html";
     }

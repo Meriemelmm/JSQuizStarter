@@ -1,13 +1,15 @@
 
- import  {fetchData,history} from './utile.js';
+ import  {fetchData} from './utile.js';
+ import { getQuizHistory,getItem } from './storage.js';
   
  console.log("history database",history);
 
 let username= document.querySelector('.username');
 
 username.textContent=localStorage.getItem('username');
-
- let LastHistory= history[history.length-1];
+ let History=getQuizHistory();
+ console.log("history dyal lyomea",History);
+ let LastHistory= History[History.length-1];
  
  let scoreq= document.querySelector('.score');
  let totalq=document.querySelector('.total');
