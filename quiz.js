@@ -17,7 +17,7 @@ let answerQuestions=[];
  console.log(globalTime);
 
 let theme = localStorage.getItem("category");
-const container=document.querySelector('.container-question');
+const container=document.querySelector('.container');
 
 
 
@@ -103,6 +103,7 @@ async function main() {
   console.log("time pour chaque q ",questionTimerId);
    
     let selected = [];
+    const answeroption = container.querySelectorAll('input[name="option"]');
 
     if (!auto) {
       answeroption.forEach((option) => {
@@ -168,6 +169,7 @@ async function main() {
    next.addEventListener("click", () => {
     if (mode === "validate") {
       validateAnswer();
+     
     } else if (mode === "next") {
       nextQuestion();
     }
