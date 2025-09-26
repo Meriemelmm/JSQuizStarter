@@ -4,58 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Historique Quiz</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="stat.css">
+   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .container-history {
-      width: 80%;
-      margin: 6rem auto;
-      background: var(--gray-light);
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .container-history h2 {
-      text-align: center;
-      color: var(--primary-dark);
-      margin-bottom: 2rem;
-      font-size: 2rem;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 0.8rem;
-      overflow: hidden;
-    }
-
-    th, td {
-      padding: 1rem;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background: var(--primary);
-      color: white;
-      font-size: 1.1rem;
-    }
-
-    tr:hover {
-      background-color: #f1f1f1;
-    }
-
-    .score-good {
-      color: var(--success);
-      font-weight: bold;
-    }
-
-    .score-bad {
-      color: var(--error);
-      font-weight: bold;
-    }
+   
   </style>
 </head>
 <body>
@@ -70,6 +23,11 @@
 
   <div class="container-history">
     <h2>📊 Historique des Quiz</h2>
+    <div class="export-buttons">
+    <button id="export-json"><i class="fas fa-file-code"></i> Export JSON</button>
+    <button id="export-csv"><i class="fas fa-file-csv"></i> Export CSV</button>
+    <button id="export-pdf"><i class="fas fa-file-pdf"></i> Export PDF</button>
+  </div>
     <table>
       <thead>
         <tr>
@@ -81,16 +39,47 @@
         </tr>
       </thead>
       <tbody id="history-body">
-         <!-- <tr>
-          <td>JavaScript</td>       
-          <td>John Doe</td>
-          <td class="score-good">85</td>
-          <td>100</td>
-          <td>2023-10-01</td>
-        </tr> -->
+        
       </tbody>
     </table>
   </div>
+  <div class="container-stats">
+  <h2>📈 Statistiques des Quiz</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Thème</th>
+        <th>Parties Jouées</th>
+        <th>Score Moyen</th>
+        <th>Meilleur Score</th>
+      </tr>
+    </thead>
+    <tbody id="stats-body">
+    
+    </tbody>
+  </table>
+
+  
+</div>
+<div class="players">
+    
+    <!-- <div class="player-card ">
+        <div class="player-rank">1</div>
+        <div class="player-avatar">
+          <i class="fas fa-crown"></i>
+        </div>
+        <div class="player-info">
+          <div class="player-name">Marie Dupont</div>
+          <div class="player-score">Score: 95%</div>
+        </div> -->
+        <!-- <div class="player-stats">
+          <span class="stat">15 quiz</span>
+          <span class="stat">Moyenne: 92%</span>
+        </div> -->
+      </div>
+       
+</div>
+
 
   <script type="module" src="Statistique.js"></script>
 </body>

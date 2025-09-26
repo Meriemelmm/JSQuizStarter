@@ -114,3 +114,40 @@ trEl.appendChild(tdEl);
   
 
 }
+export function createElementPlayyers(ParentEl,playerData){
+  let playerCard=document.createElement("div");
+  playerCard.classList.add("player-card");
+  ParentEl.appendChild(playerCard);
+
+let playerRank=document.createElement("div");
+playerRank.classList.add("player-rank");
+playerRank.textContent=`#${playerData.rank}`;
+
+playerCard.appendChild(playerRank);
+let playerAvatar=document.createElement("div");
+playerAvatar.classList.add("player-avatar");
+playerCard.appendChild(playerAvatar); 
+if (playerData.rank === 1) {
+  playerAvatar.innerHTML = '<i class="fas fa-crown"></i>';
+} else if (playerData.rank === 2) {
+  playerAvatar.innerHTML = '<i class="fas fa-medal"></i>';
+} else if (playerData.rank === 3) {
+  playerAvatar.innerHTML = '<i class="fas fa-medal"></i>';
+} else {
+  playerAvatar.innerHTML = '<i class="fas fa-user"></i>';
+}
+
+let playerEnf=document.createElement("div");
+playerEnf.classList.add("player-info");
+playerCard.appendChild(playerEnf);
+ let playerName=document.createElement("div");
+playerName.classList.add("player-name");
+playerName.textContent=playerData.name;
+playerEnf.appendChild(playerName);
+ let playerScore=document.createElement("div");
+playerScore.classList.add("player-score");
+
+playerScore.textContent= "score: "+ playerData.meilleurScore;
+playerEnf.appendChild(playerScore);
+
+}

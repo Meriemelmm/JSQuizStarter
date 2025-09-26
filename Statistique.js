@@ -3,24 +3,26 @@
 
 import { categories } from './utile.js';
 import { getItem, getQuizHistory } from './storage.js';
-import {createHistoryTable} from './ui.js';
+import {createHistoryTable,createElementPlayyers} from './ui.js';
 
 // Récupération des données
 let QuizHstr = getQuizHistory();
  
 
-// 1. Statistiques par thème
+// 1. Statistiques par thème:
 function calculerStatsParTheme(history, categories) {
     return categories.map(theme => {
         let parties = history.filter((h) => h.theme === theme);
         let totalJoueurs = parties.length;
         let scoreTotal = parties.reduce((sum, p) => sum + p.score, 0);
         let scoreMoyen = parties.length ? scoreTotal / parties.length : 0;
-        
+          let scoreMax = parties.length ? Math.max(...parties.map((p) => p.score)) : 0;
         return {
             theme: theme,
             totalJoueurs: totalJoueurs,
-            scoreMoyen: scoreMoyen
+            scoreMoyen: scoreMoyen,
+            scoreMax:scoreMax
+
         };
     });
 }
@@ -36,6 +38,7 @@ function calculerMeilleurScore(history) {
         joueur: meilleurScoreJoueur
     };
 }
+
 
 // fucntion filtrage TABLE UNIQUE  par nom:
   function getNameUnique(history){
@@ -63,12 +66,12 @@ function calculerStatsParUtilisateur(history) {
 }
 
 // 4. Classement top 3
-function calculerTop3(history) {
+function calculerTop3(history,n=3) {
     let statsUtilisateurs = calculerStatsParUtilisateur(history);
     
     return statsUtilisateurs
         .sort((a, b) => b.meilleurScore - a.meilleurScore)
-        .slice(0, 3);
+        .slice(0,n);
 }
 
 //  Fonction qui retourne toutes les statistiques :
@@ -77,7 +80,7 @@ function genereStats(history, categories) {
         statsParTheme: calculerStatsParTheme(history, categories),
         meilleurScoreGlobal: calculerMeilleurScore(history),
         statsUtilisateurs: calculerStatsParUtilisateur(history),
-        top3: calculerTop3(history)
+        top3: calculerTop3(history,3)
     };
 }
 
@@ -87,6 +90,8 @@ let toutesLesStats = genereStats(QuizHstr,categories);
 
 // recuper dom dans file bordhtml:
  let HistoryBody= document.querySelector('#history-body');
+ let StatsBody=document.querySelector('#stats-body');
+ 
 
 
 // filtrage history par name 
@@ -100,17 +105,32 @@ let historyParUser;
  })
 
  return historyParUser;}
-  
+  let HistoryParName = getHistoryParName(QuizHstr);
 //  function aficher historyqiue des theme jour dans bord pour chaque  user :
- function ShowUserHistory(columnsToShow ) {
-    let HistoryParName = getHistoryParName(QuizHstr);
+ function ShowUserHistory(ElementBody,data,columnsToShow) {
+    
    
-    createHistoryTable(HistoryBody, HistoryParName, columnsToShow);
+    createHistoryTable(ElementBody,data,columnsToShow);
 }
 
 //  aficher  les hsitiry de user :
+
+ShowUserHistory(HistoryBody,HistoryParName, ["theme","score","totalQuestions","date"]); 
+ ShowUserHistory(StatsBody,toutesLesStats.statsParTheme,["theme","totalJoueurs","scoreMoyen","scoreMax"]);
  
-ShowUserHistory( ["theme","score","totalQuestions","date"]); 
+//  dom top classement:
+let TopPlayers=document.querySelector('.players');
+function showTopPlayers(ParentEl,playersData){
+  playersData.forEach((playerData,idx)=>{
+    playerData.rank=idx+1;
+
+
+
+    createElementPlayyers(ParentEl,playerData);
+  })}
+showTopPlayers(TopPlayers,toutesLesStats.top3);
+
+
 
  
     
