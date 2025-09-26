@@ -2,10 +2,12 @@
 
 
 import { categories } from './utile.js';
-import { getQuizHistory } from './storage.js';
+import { getItem, getQuizHistory } from './storage.js';
+import {createHistoryTable} from './ui.js';
 
 // Récupération des données
 let QuizHstr = getQuizHistory();
+ 
 
 // 1. Statistiques par thème
 function calculerStatsParTheme(history, categories) {
@@ -35,10 +37,14 @@ function calculerMeilleurScore(history) {
     };
 }
 
+// fucntion filtrage TABLE UNIQUE  par nom:
+  function getNameUnique(history){
+     let usernames = history.map(h => h.username);
+    return  usernames = Array.from(new Set(usernames));
+  }
 // 3. Statistiques par utilisateur
 function calculerStatsParUtilisateur(history) {
-    let usernames = history.map(h => h.username);
-    usernames = Array.from(new Set(usernames));
+     let usernames= getNameUnique(history);
     
     return usernames.map((name) => {
         let userParties = history.filter((q) => q.username === name);
@@ -78,11 +84,36 @@ function genereStats(history, categories) {
 // Calcul de toutes les statistiques
 let toutesLesStats = genereStats(QuizHstr,categories);
 
-console.log("les statistiqes ",toutesLesStats);
+
+// recuper dom dans file bordhtml:
+ let HistoryBody= document.querySelector('#history-body');
 
 
+// filtrage history par name 
+ function  getHistoryParName(history){
 
+ let username=getItem("username");
+let historyParUser;
 
+   historyParUser= history.filter((h)=>{
+    return h.username===username;
+ })
 
+ return historyParUser;}
+  
+//  function aficher historyqiue des theme jour dans bord pour chaque  user :
+ function ShowUserHistory(columnsToShow ) {
+    let HistoryParName = getHistoryParName(QuizHstr);
+   
+    createHistoryTable(HistoryBody, HistoryParName, columnsToShow);
+}
 
+//  aficher  les hsitiry de user :
+ 
+ShowUserHistory( ["theme","score","totalQuestions","date"]); 
 
+ 
+    
+ 
+ 
+   

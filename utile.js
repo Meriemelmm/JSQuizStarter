@@ -18,7 +18,7 @@
     }
 }
 // function pour  timer :
-export function starTimer(type="minutes",time,timeElement,onfinish){
+export function startTimer(type="minutes",time,timeElement,onfinish){
    
     
     let timeLeft=setInterval(()=>{

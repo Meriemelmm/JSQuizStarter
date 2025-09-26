@@ -1,8 +1,9 @@
-import {fetchData,starTimer}  from './utile.js'; 
+import {fetchData,startTimer}  from './utile.js'; 
 import { createQuestionUI,updateCurrentTotal,updateGlobalTimer } from './ui.js';
 import {setItem,getItem,saveQuizResult} from './storage.js';
 
 let question = document.querySelector('.question');
+console.log("hello");
 
 let next = document.querySelector('.next');
 let current = document.querySelector('.current');
@@ -40,7 +41,7 @@ let globalTimerId;
     
     let countime = questions[i].time;
     time.innerHTML = countime;
-  questionTimerId=starTimer("secondes",countime,time,()=>{validateAnswer(true)});}
+  questionTimerId=startTimer("secondes",countime,time,()=>{validateAnswer(true)});}
 
 // afiches les questions et les options:
 
@@ -60,7 +61,7 @@ async function main() {
     if (questions.length > 0) {
         showQuestion(index);
     }
-  globalTimerId=starTimer("minutes",TimeGlobal,globalTime,()=>{
+  globalTimerId=startTimer("minutes",TimeGlobal,globalTime,()=>{
     window.location.href="History.html";
   })  ;
 }
