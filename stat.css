@@ -188,4 +188,14 @@
 .export-buttons button i {
   margin-right: 0.3rem;
 }
+.chart{
+    background-color: salmon;
+    width:90%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:auto;    
+    margin:0 auto;
+    
+}
 

@@ -10,7 +10,7 @@ let QuizHstr = getQuizHistory();
  
 
 // 1. Statistiques par thème:
-function calculerStatsParTheme(history, categories) {
+ export function calculerStatsParTheme(history, categories) {
     return categories.map(theme => {
         let parties = history.filter((h) => h.theme === theme);
         let totalJoueurs = parties.length;
