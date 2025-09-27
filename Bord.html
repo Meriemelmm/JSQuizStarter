@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="stat.css">
    <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.12.1/html2pdf.bundle.min.js"></script>
   <style>
    
   </style>
@@ -20,13 +21,14 @@
       <a href="#"><i class="fas fa-envelope"></i> Contact</a>
     </nav>
   </header>
-
+ <button id="export-json"><i class="fas fa-file-code"></i> Export JSON</button>
+    <button id="export-csv"><i class="fas fa-file-csv"></i> Export CSV</button>
+    <button id="export-pdf"><i class="fas fa-file-pdf"></i> Export PDF</button>
+    <div class="all">
   <div class="container-history">
     <h2>📊 Historique des Quiz</h2>
     <div class="export-buttons">
-    <button id="export-json"><i class="fas fa-file-code"></i> Export JSON</button>
-    <button id="export-csv"><i class="fas fa-file-csv"></i> Export CSV</button>
-    <button id="export-pdf"><i class="fas fa-file-pdf"></i> Export PDF</button>
+   
   </div>
     <table>
       <thead>
@@ -81,10 +83,11 @@
 </div>
 <div class="chart">
   <canvas id="FirstChart" width="400" height="200"></canvas>
-</div>
+</div></div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script type="module" src="Statistique.js"></script>
   <script type="module" src="chart.js"></script>
+  <script type="module" src="Export.js"></script>
 </body>
 </html>

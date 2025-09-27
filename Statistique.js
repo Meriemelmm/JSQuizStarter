@@ -95,7 +95,7 @@ let toutesLesStats = genereStats(QuizHstr,categories);
 
 
 // filtrage history par name 
- function  getHistoryParName(history){
+   function  getHistoryParName(history){
 
  let username=getItem("username");
 let historyParUser;
@@ -105,7 +105,7 @@ let historyParUser;
  })
 
  return historyParUser;}
-  let HistoryParName = getHistoryParName(QuizHstr);
+   export let HistoryParName = getHistoryParName(QuizHstr);
 //  function aficher historyqiue des theme jour dans bord pour chaque  user :
  function ShowUserHistory(ElementBody,data,columnsToShow) {
     
