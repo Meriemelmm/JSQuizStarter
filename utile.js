@@ -1,6 +1,6 @@
    
 
-   export let categories =["Javascript","CSS","HTML"];
+   export let categories =["Javascript","CSS","HTML","node"];
 //    fetch data  from json file :
 
    

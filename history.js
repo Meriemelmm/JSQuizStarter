@@ -1,21 +1,18 @@
 
  import  {fetchData} from './utile.js';
- import { getQuizHistory,getItem } from './storage.js';
+ import { getQuizHistory,getItem, setItem } from './storage.js';
  import {createCorrectionElement} from './ui.js';
  
 
 
 let username= document.querySelector('.username');
 let name=getItem("username");
-console.log("name",name);
+
 let History=getQuizHistory();
-console.log("history database",History);
+username.textContent=name;
 
-username.textContent=localStorage.getItem('username');
-
-console.log("history database",History);
  let LastHistory= History[History.length-1];
- console.log("dernier historyu ",LastHistory);
+
 //  partie de dome 
  let scoreq= document.querySelector('.score');
  let totalq=document.querySelector('.total');
@@ -23,20 +20,21 @@ console.log("history database",History);
 scoreq.textContent=LastHistory.score;
 totalq.textContent=LastHistory.totalQuestions;
 let results= document.querySelector('.results');
-let Restart= document.querySelector('.Restart');
+
 let arrive= document.querySelector('.arriver');
 // recupere category par localstorag e:
 let category=getItem("category");
-console.log("categoryde localsyorage ",category);
-;
+
+
 
 
    let QuestionCatego;
   async function loadQuestions(){
  QuestionCatego=await fetchData(category); 
- console.log("dataQuestio",QuestionCatego);
- console.log("hello");
+
     Feedback(QuestionCatego);
+    showFailedQuestions(QuestionCatego);
+
   }
   loadQuestions();
 
@@ -52,3 +50,31 @@ console.log("categoryde localsyorage ",category);
         results.appendChild(correctionEl);
     });
 }
+// mode revision:
+let revision= document.querySelector('.revision');
+console.log("revision",revision);
+console.log("LastHistory",LastHistory);
+function showFailedQuestions(QuestionCatego) {
+    let failedQuestions = QuestionCatego.filter((q, index) => {
+        // récupérer les réponses de l'utilisateur pour cette question
+        let userAnswers = LastHistory.answerUser[index] || [];
+        // comparer avec les bonnes réponses
+        return JSON.stringify(userAnswers.sort()) !== JSON.stringify(q.answer.sort());
+    });
+
+  
+    return failedQuestions;
+}
+revision.addEventListener('click', () => {
+    setItem("failedQuestions", showFailedQuestions(QuestionCatego));
+    window.location.href = "quiz.html?mode=revision"; // sans espaces !
+});
+
+
+
+
+
+
+
+
+

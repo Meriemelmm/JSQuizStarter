@@ -25,7 +25,8 @@ const container=document.querySelector('.container');
     let TimeGlobal;
     let questionTimerId;   
 let globalTimerId; 
- 
+ let urlParams = new URLSearchParams(window.location.search);
+let revisionMode = urlParams.get("mode") === "revision";
     // afiches lesquestions et les options:
     function showQuestion(i) {
     clearInterval(questionTimerId); 
@@ -47,7 +48,22 @@ let globalTimerId;
 
 async function main() {
     clearInterval(globalTimerId);
-    questions = await fetchData(theme);
+    if(revisionMode){
+         const stored = getItem("failedQuestions");
+         if(stored){
+             questions = stored;
+             console.log("questions",questions);
+              if (questions.length === 0) {
+            alert("Aucune question échouée !");
+            window.location.href = "History.html";
+            return;
+        }
+         }
+    }
+    else{
+         questions = await fetchData(theme); 
+    }
+   
 
          totalQuestions=questions.length;
          nameCategory.innerHTML=theme;

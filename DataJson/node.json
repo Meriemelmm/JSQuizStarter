@@ -1,0 +1,23 @@
+{
+  "theme": "Node.js",
+  "questions": [
+    {
+      "question": "Quelle commande permet d'initialiser un projet Node.js avec un fichier package.json ?",
+      "options": ["npm start", "node init", "npm init", "npx create-node-app"],
+      "answer": [2],
+      "time": 10
+    },
+    {
+      "question": "Quel module intégré de Node.js est utilisé pour créer un serveur HTTP ?",
+      "options": ["fs", "http", "express", "net"],
+      "answer": [1],
+      "time": 10
+    },
+    {
+      "question": "Quel mot-clé est utilisé dans Node.js pour importer un module ?",
+      "options": ["require", "import", "include", "use"],
+      "answer": [0, 1],
+      "time": 10
+    }
+  ]
+}
