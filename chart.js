@@ -4,7 +4,7 @@ import { categories } from './utile.js';
 
 //  Récupérer les stats UNE SEULE FOIS
 let stats = calculerStatsParTheme(getQuizHistory(), categories);
-console.log("shhshs",stats);
+
 // cree    une table les themes et  le nombre de jouers:
 let labels = stats.map(c => c.theme); 
 let values = stats.map(c => c.totalJoueurs);

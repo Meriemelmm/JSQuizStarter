@@ -135,7 +135,7 @@ font-weight: 600;
     flex-direction: row-reverse;
 
 }
-.Restart,.arriver{
+.revision,.arriver{
     background-color: var(--primary-dark);
     color:white;
     border-radius: 50rem;
@@ -213,7 +213,7 @@ color:var(--text)
         width:100%;
         
     }
-    .Restart,.arriver{
+    .revision,.arriver{
       width:30%;
       min-height:7vh;
     }
@@ -240,7 +240,7 @@ color:var(--text)
         flex-direction: column-reverse;
        
     }
-    .Restart,.arriver{
+    .revision,.arriver{
         width:80%;
 
     }

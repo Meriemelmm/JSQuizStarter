@@ -49,13 +49,15 @@ if (quizesContainer) {
 
   // Gestion du formulaire
   form.addEventListener("submit", (e) => {
+    // annule le comportement par défaut du navigate
+    //  cad  moi qui je controle ca 
     e.preventDefault();
     let nom = nameInput.value.trim();
     if (!nom) {
       alert("Veuillez entrer un nom !");
       return;
     }
-    // localStorage.setItem("username", nom);
+   
     setItem("username",nom);
     window.location.href = "quiz.html";
   });

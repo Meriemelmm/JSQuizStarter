@@ -1,10 +1,8 @@
 import {fetchData,startTimer}  from './utile.js'; 
 import { createQuestionUI,updateCurrentTotal,updateGlobalTimer } from './ui.js';
 import {setItem,getItem,saveQuizResult} from './storage.js';
-
+// recupere dom :
 let question = document.querySelector('.question');
-console.log("hello");
-
 let next = document.querySelector('.next');
 let current = document.querySelector('.current');
 let total = document.querySelector('.total');
@@ -15,7 +13,7 @@ let answerQuestions=[];
  let globalTime=document.querySelector('.global-time');
 let theme=getItem("category");
 const container=document.querySelector('.container');
-
+// initialiser les variables
   let index = 0;
   let score = 0;
   let mode = "validate"; 
@@ -25,29 +23,34 @@ const container=document.querySelector('.container');
     let TimeGlobal;
     let questionTimerId;   
 let globalTimerId; 
+// recupere les paramètres de l'URL de la page
+// pour le mode révision
  let urlParams = new URLSearchParams(window.location.search);
+//  verifie si le mode révision est activé
 let revisionMode = urlParams.get("mode") === "revision";
     // afiches lesquestions et les options:
     function showQuestion(i) {
-    clearInterval(questionTimerId); 
+   
    
     let questionData=questions[i];
-    console.log("hellooo");
+    
  createQuestionUI(container,questionData);
    updateCurrentTotal(current, total, i + 1, totalQuestions);
- console.log("hellossjsj");
+
     next.textContent = "Valider";
     mode = "validate";
 
     
     let countime = questions[i].time;
     time.innerHTML = countime;
+    //  démarre le timer pour chaque question
   questionTimerId=startTimer("secondes",countime,time,()=>{validateAnswer(true)});}
 
 // afiches les questions et les options:
 
 async function main() {
     clearInterval(globalTimerId);
+    // si le mode révision est activé, on récupère les questions failed
     if(revisionMode){
          const stored = getItem("failedQuestions");
          if(stored){
@@ -67,7 +70,7 @@ async function main() {
 
          totalQuestions=questions.length;
          nameCategory.innerHTML=theme;
-        //  total.innerHTML = totalQuestions;
+      
          
           TimeGlobal=questions.reduce((total ,q) => {
   return total += q.time;
@@ -77,6 +80,7 @@ async function main() {
     if (questions.length > 0) {
         showQuestion(index);
     }
+    // démarre le timer global:
   globalTimerId=startTimer("minutes",TimeGlobal,globalTime,()=>{
     window.location.href="History.html";
   })  ;
@@ -85,7 +89,7 @@ async function main() {
  function validateAnswer(auto = false) {
   clearInterval(questionTimerId);
   
-  console.log("time pour chaque q ",questionTimerId);
+ 
    
     let selected = [];
     const answeroption = container.querySelectorAll('input[name="option"]');
@@ -99,11 +103,11 @@ async function main() {
       }); 
        answerQuestions.push(selected);
     }
-    console.log("answer",answerQuestions);
+   
 
     let answers = questions[index].answer; 
    
-   
+  //  
     answeroption.forEach((option) => {
       let value = parseInt(option.value);
       option.disabled = true; 
@@ -115,7 +119,7 @@ async function main() {
       }
     });
 
-   
+  //  comparaison answer user avec answer correc  converty a string 
     if (!auto && JSON.stringify(selected.sort()) === JSON.stringify(answers.sort())) {
       score++;
     }
@@ -153,6 +157,7 @@ async function main() {
       window.location.href = "History.html";
     }
   }
+  // event pour  next question ou valider la réponse
    next.addEventListener("click", () => {
     if (mode === "validate") {
       validateAnswer();

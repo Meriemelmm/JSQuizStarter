@@ -9,7 +9,7 @@ import {createHistoryTable,createElementPlayyers} from './ui.js';
 let QuizHstr = getQuizHistory();
  
 
-// 1. Statistiques par thème:
+// stat par thème:
  export function calculerStatsParTheme(history, categories) {
     return categories.map(theme => {
         let parties = history.filter((h) => h.theme === theme);
@@ -27,9 +27,10 @@ let QuizHstr = getQuizHistory();
     });
 }
 
-// 2. Meilleur score global
+// best  score en global:
 function calculerMeilleurScore(history) {
     let scores = history.map(h => h.score);
+    // math.max (...[1,2,3])= cad math.max(1,2,3)  chercher  element par elemnt 
     let meilleurScore = Math.max(...scores);
     let meilleurScoreJoueur = history.find((h) => h.score === meilleurScore);
     
@@ -45,7 +46,7 @@ function calculerMeilleurScore(history) {
      let usernames = history.map(h => h.username);
     return  usernames = Array.from(new Set(usernames));
   }
-// 3. Statistiques par utilisateur
+//  Statistiques par utilisateur
 function calculerStatsParUtilisateur(history) {
      let usernames= getNameUnique(history);
     
@@ -65,7 +66,7 @@ function calculerStatsParUtilisateur(history) {
     });
 }
 
-// 4. Classement top 3
+//  Classement top 3 
 function calculerTop3(history,n=3) {
     let statsUtilisateurs = calculerStatsParUtilisateur(history);
     
@@ -123,8 +124,6 @@ let TopPlayers=document.querySelector('.players');
 function showTopPlayers(ParentEl,playersData){
   playersData.forEach((playerData,idx)=>{
     playerData.rank=idx+1;
-
-
 
     createElementPlayyers(ParentEl,playerData);
   })}

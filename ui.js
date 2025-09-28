@@ -22,7 +22,7 @@ export function createQuestionUI(container, questionData) {
     input.value = index;
 
     const label = document.createElement("label");
-    label.textContent = option; // ✅ correction ici
+    label.textContent = option;
     label.classList.remove("correct", "wrong");
 
     proposDiv.appendChild(input);

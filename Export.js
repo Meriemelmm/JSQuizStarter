@@ -2,13 +2,19 @@ import { HistoryParName } from './Statistique.js';
 
 // Fonction utilitaire pour créer et déclencher un téléchargement
 function downloadFile(content, filename, type) {
+//    cree un blob et un lien pour le téléchargement
+   
     const blob = new Blob([content], { type });
     const link = document.createElement("a");
+    // crée un fichier téléchargeable dans le navigateur.
     link.href = URL.createObjectURL(blob);
     link.download = filename;
     document.body.appendChild(link);
     link.click();
+    // supprimer le lien après le téléchargement
     document.body.removeChild(link);
+    // libérer l'URL créée
+    // pour éviter les fuites de mémoire
     setTimeout(() => URL.revokeObjectURL(link.href), 100);
 }
 
@@ -36,12 +42,16 @@ function setupPDFExport(buttonId) {
 // Export CSV
 function exporterCSV(data, filename = "historique.csv") {
     if (!data || data.length === 0) return;
-
+// recupere keys et formate les données a string pour ccv
     const keys = Object.keys(data[0]);
     keys.pop();
+    // devient commen score,theme,date:
     const header = keys.join(",");
+  
     const rows = data.map(item => keys.map(k => item[k]).join(",")).join("\n");
+//   concatenation header + rows:
     const csv = header + "\n" + rows;
+    // 
     downloadFile(csv, filename, "text/csv;charset=utf-8;");
 }
 
@@ -50,6 +60,8 @@ function exporterJSON(data, filename = "historique.json") {
     if (!data || data.length === 0) return;
 
     const filteredData = data.map(({ username, score, date }) => ({ username, score, date }));
+    console.log("filtred",filteredData);
+    // null:non filtrage, 2:espace:
     const jsonString = JSON.stringify(filteredData, null, 2);
     downloadFile(jsonString, filename, "application/json;charset=utf-8;");
 }
