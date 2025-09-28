@@ -40,4 +40,41 @@ let chart = new Chart(FirstChart, {
         }
     }
 });
+// chart deuxieme:
+ let history=getQuizHistory();
+ console.log("history", history);
 
+const sortedHistory = [...history].sort((a, b) => new Date(a.date) - new Date(b.date));
+const dates = sortedHistory.map(h => h.date);
+const scores = sortedHistory.map(h => h.score);
+
+console.log("sortedHistory", sortedHistory);
+console.log("dates", dates);
+console.log("scores", scores);
+
+let SecondChart = document.getElementById('SecondChart').getContext('2d');
+
+
+ let chart2=new Chart(SecondChart, {
+  type: 'line',
+  data: {
+    labels: dates,
+    datasets: [{
+      label: 'Score',
+      data: scores,
+      borderColor: '#4CAF50',
+      backgroundColor: 'rgba(76, 175, 80, 0.2)',
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      x: { title: { display: true, text: 'Date' } },
+      y: { title: { display: true, text: 'Score' }, beginAtZero: true }
+    }
+  }
+});
+
+    

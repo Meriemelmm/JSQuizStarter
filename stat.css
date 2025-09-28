@@ -1,53 +1,6 @@
- .container-history {
-      width: 80%;
-      margin: 6rem auto;
-      background: var(--gray-light);
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .container-history h2 {
-      text-align: center;
-      color: var(--primary-dark);
-      margin-bottom: 2rem;
-      font-size: 2rem;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 0.8rem;
-      overflow: hidden;
-    }
-
-    th, td {
-      padding: 1rem;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background: var(--primary);
-      color: white;
-      font-size: 1.1rem;
-    }
-
-    tr:hover {
-      background-color: #f1f1f1;
-    }
-
-    .score-good {
-      color: var(--success);
-      font-weight: bold;
-    }
-
-    .score-bad {
-      color: var(--error);
-      font-weight: bold;
-    }
-    .container-stats {
+/* ========== CONTAINERS ========== */
+.container-history,
+.container-stats {
   width: 80%;
   margin: 3rem auto;
   background: var(--gray-light);
@@ -56,6 +9,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.container-history h2,
 .container-stats h2 {
   text-align: center;
   color: var(--primary-dark);
@@ -63,50 +17,65 @@
   font-size: 2rem;
 }
 
-.container-stats table {
+/* ========== TABLES ========== */
+table {
   width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 0.8rem;
+  border-collapse: separate;
+  border-spacing: 0;
   overflow: hidden;
-  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  background: white;
 }
 
-.container-stats th, .container-stats td {
+th, td {
   padding: 1rem;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
-.container-stats th {
+th {
   background: var(--primary);
   color: white;
-  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.container-stats tr:hover {
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
   background-color: #f1f1f1;
 }
 
+.score-good {
+  color: var(--success);
+  font-weight: bold;
+}
 
+.score-bad {
+  color: var(--error);
+  font-weight: bold;
+}
+
+/* ========== PLAYERS ========== */
 .players {
-  width: 80%;
+  width: 90%;
   margin: 3rem auto;
   display: flex;
   justify-content: center;
-  align-items: stretch;
-  gap: 1.5rem;
-  flex-wrap: wrap; /* Responsive */
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .player-card {
-  background: white;
-  border-radius: 1rem;
+  flex: 1 1 220px;
+  max-width: 250px;
   padding: 1.5rem;
-  flex: 1 1 250px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 1rem;
+  background: white;
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -117,7 +86,6 @@
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
-/* Rank styling */
 .player-rank {
   font-size: 1.5rem;
   font-weight: bold;
@@ -125,31 +93,22 @@
   margin-bottom: 0.5rem;
 }
 
-/* Avatar */
 .player-avatar {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: gold;
   margin-bottom: 1rem;
 }
 
-/* Info joueur */
-.player-info {
-  margin-bottom: 1rem;
-}
-
 .player-name {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 600;
   color: var(--primary-dark);
 }
 
 .player-score {
-  font-size: 1rem;
   color: var(--success);
-  font-weight: 600;
+  font-weight: bold;
 }
 
-/* Stats */
 .player-stats {
   display: flex;
   justify-content: space-around;
@@ -163,39 +122,103 @@
   padding: 0.3rem 0.7rem;
   border-radius: 0.5rem;
 }
-.export-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-bottom: 1rem;
+
+/* ========== EXPORT BUTTONS ========== */
+.export-buttons{
+    margin: 2rem auto;
+    margin-right: 2rem;  /* un peu plus de marge depuis le header */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;  
+          /* espace entre les boutons */
 }
 
-.export-buttons button {
-  padding: 0.5rem 1rem;
+.export-buttons button,
+#export-json, #export-csv, #export-pdf {
+  padding: 0.6rem 1.2rem;
   border: none;
   border-radius: 0.5rem;
   background-color: var(--primary);
   color: white;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background 0.2s ease;
+  transition: background 0.3s ease;
 }
 
-.export-buttons button:hover {
+.export-buttons button:hover,
+#export-json:hover, #export-csv:hover, #export-pdf:hover {
   background-color: var(--primary-dark);
 }
 
-.export-buttons button i {
+.export-buttons button i,
+#export-json i, #export-csv i, #export-pdf i {
   margin-right: 0.3rem;
 }
-.chart{
-    background-color: salmon;
-    width:90%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    height:auto;    
-    margin:0 auto;
-    
+
+/* ========== CHARTS ========== */
+.chart {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem auto;
 }
 
+#FirstChart, #SecondChart {
+  flex: 1 1 400px;
+  max-width: 500px;
+  height: auto !important;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .container-history,
+  .container-stats,
+  .players {
+    width: 95%;
+    margin: 2rem auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .chart {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .player-card {
+    flex: 1 1 80%;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  th, td {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .container-history h2,
+  .container-stats h2 {
+    font-size: 1.5rem;
+  }
+
+  .player-avatar {
+    font-size: 2rem;
+  }
+
+  .player-rank {
+    font-size: 1.2rem;
+  }
+
+  .player-name,
+  .player-score {
+    font-size: 0.9rem;
+  }
+
+  .export-buttons {
+    justify-content: center;
+  }
+}

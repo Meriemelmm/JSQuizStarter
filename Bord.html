@@ -23,15 +23,15 @@
             <a href="#"><i class="fas fa-envelope"></i> Contact</a>
         </nav>
     </header>
+    <div class="export-buttons">
     <button id="export-json"><i class="fas fa-file-code"></i> Export JSON</button>
     <button id="export-csv"><i class="fas fa-file-csv"></i> Export CSV</button>
     <button id="export-pdf"><i class="fas fa-file-pdf"></i> Export PDF</button>
+    </div>
     <div class="all">
         <div class="container-history">
             <h2>📊 Historique des Quiz</h2>
-            <div class="export-buttons">
-
-            </div>
+            
             <table>
                 <thead>
                     <tr>
@@ -85,6 +85,7 @@
     </div>
     <div class="chart">
         <canvas id="FirstChart" width="400" height="200"></canvas>
+        <canvas id="SecondChart" width="400" height="200"></canvas>
     </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
