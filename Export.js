@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Récupérer le bouton PDF
     if (!exportpdf) return; // sécurité si le bouton n'existe pas
-    if (!exportpdf) return; // sécurité si le bouton n'existe pas
+    if (!exportpdf) return; 
 
     // Fonction pour générer le PDF
     const generatePDF = () => {
