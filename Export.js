@@ -37,7 +37,8 @@ function setupPDFExport(buttonId) {
 function exporterCSV(data, filename = "historique.csv") {
     if (!data || data.length === 0) return;
 
-    const keys = Object.keys(data[0]).filter(k => k !== 'userAnswer');
+    const keys = Object.keys(data[0]);
+    keys.pop();
     const header = keys.join(",");
     const rows = data.map(item => keys.map(k => item[k]).join(",")).join("\n");
     const csv = header + "\n" + rows;
