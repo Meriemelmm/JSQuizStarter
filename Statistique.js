@@ -4,10 +4,14 @@
 import { categories } from './utile.js';
 import { getItem, getQuizHistory } from './storage.js';
 import {createHistoryTable,createElementPlayyers} from './ui.js';
+// dom:
+let userNameSpan=document.querySelector('#user-name');
 
 // Récupération des données
 let QuizHstr = getQuizHistory();
- 
+
+  let username=getItem("username");
+  userNameSpan.textContent=username? username:"";
 
 // stat par thème:
  export function calculerStatsParTheme(history, categories) {
@@ -98,7 +102,7 @@ let toutesLesStats = genereStats(QuizHstr,categories);
 // filtrage history par name 
    function  getHistoryParName(history){
 
- let username=getItem("username");
+
 let historyParUser;
 
    historyParUser= history.filter((h)=>{

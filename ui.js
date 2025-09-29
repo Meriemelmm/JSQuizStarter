@@ -150,8 +150,6 @@ trEl.appendChild(tdEl);
   })
 
   })
-  
-
 }
 export function createElementPlayyers(ParentEl,playerData){
   let playerCard=document.createElement("div");

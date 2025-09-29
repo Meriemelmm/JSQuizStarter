@@ -54,7 +54,9 @@ history.forEach(h => {
 
    
     let [day, month, year] = h.date.split(" ")[0].split("/");
-    let dateObj = new Date(`${year}-${month}-${day}`); 
+    
+    let dateObj = new Date(`${year}-${month}-${day}`);
+
 
     let simpleDate = `${day}/${month}/${year}`; //afiche sur le graph chart
     if (!grouped[simpleDate]) grouped[simpleDate] = [];

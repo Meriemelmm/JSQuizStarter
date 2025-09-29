@@ -7,7 +7,7 @@ let next = document.querySelector('.next');
 let current = document.querySelector('.current');
 let total = document.querySelector('.total');
 let time = document.querySelector('.time');
-let answerQuestions=[];
+
  let nameCategory=document.querySelector('.name-cat');
 
  let globalTime=document.querySelector('.global-time');
@@ -19,6 +19,7 @@ const container=document.querySelector('.container');
   let mode = "validate"; 
  let questions;
   let intervalId;
+  let answerQuestions=[];
    let totalQuestions ;
     let TimeGlobal;
     let questionTimerId;   

@@ -20,12 +20,13 @@ export function startTimer(type="minutes",time,timeElement,onfinish){
     
     let timeLeft=setInterval(()=>{
         if(type==="secondes"){
-            timeElement.innerText=time;
+            timeElement.textContent=time;
         } 
          else{
         let minutes=parseInt(time/60,10);
         let secondes=parseInt(time%60,10);
-       timeElement.innerText = `${minutes}:${secondes.toString().padStart(2,"0")}`;
+        
+       timeElement.textContent = `${minutes}:${secondes.toString().padStart(2,"0")}`;
     }
         time--;
         if(time <=0){

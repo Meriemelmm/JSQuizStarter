@@ -1,8 +1,8 @@
 import { HistoryParName } from './Statistique.js';
 
-// Fonction utilitaire pour créer et déclencher un téléchargement
+// Fonction utilitaire pour créer et  start  un téléchargement
 function downloadFile(content, filename, type) {
-//    cree un blob et un lien pour le téléchargement
+//    create   blob et un link pour le telechrge
    
     const blob = new Blob([content], { type });
     const link = document.createElement("a");
