@@ -1,5 +1,44 @@
 
 
+
+ export function createCategoryUI(theme, onStart) {
+  // Crée le container principal
+  let quizDiv = document.createElement('div');
+  quizDiv.classList.add('quiz');
+
+  // create le titre
+  let h2 = document.createElement('h2');
+  h2.textContent = `${theme} Quiz`;
+
+  // create la div pour le bouton
+  let startDiv = document.createElement('div');
+  startDiv.classList.add('start-div');
+
+  // create le bouton
+  let button = document.createElement('button');
+  button.classList.add('start');
+  button.dataset.category = theme;
+
+  // add icône et texte
+  let icon = document.createElement('i');
+  icon.classList.add('fas', 'fa-play');
+  button.appendChild(icon);
+  button.appendChild(document.createTextNode(" Commencer"));
+
+  // Ajout bouton à la div
+  startDiv.appendChild(button);
+
+  // Ajout titre et bouton à la carte
+  quizDiv.appendChild(h2);
+  quizDiv.appendChild(startDiv);
+
+  // Attacher l’événement
+  if (typeof onStart === "function") {
+    button.addEventListener("click", () => onStart(theme));
+  }
+
+  return quizDiv;
+ }
 export function createQuestionUI(container, questionData) {
   // Vider le container
   container.innerHTML = "";

@@ -8,10 +8,7 @@
     const response=await fetch("DataJson/"+theme+".json");
     try{
          let  data= await response.json();
-          return data.questions;
-        
-  
-         
+          return data.questions;    
     }
     catch(eroor){
         console.log("Error",eroor);

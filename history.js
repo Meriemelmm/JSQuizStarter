@@ -10,24 +10,17 @@ let username= document.querySelector('.username');let scoreq= document.querySele
  let results= document.querySelector('.results');
 
 let arrive= document.querySelector('.arriver');
+// recuper   quizHistory,category,username depuis lcoalstorage :
+let History=getQuizHistory();
+let category=getItem("category");
 
-
-
+let name=getItem("username");
  let LastHistory= History[History.length-1];
 // content dom :
  username.textContent=name;
  
 scoreq.textContent=LastHistory.score;
 totalq.textContent=LastHistory.totalQuestions;
-
-// recupere  par localstorag e:
-let category=getItem("category");
-
-let name=getItem("username");
-
-let History=getQuizHistory();
-
-
 let QuestionCatego;
 // 
   async function loadQuestions(){
@@ -78,6 +71,8 @@ revision.addEventListener('click', () => {
     setItem("failedQuestions", showFailedQuestions(QuestionCatego));
     window.location.href = "quiz.html?mode=revision"; // sans espaces !
 });
+
+// 
 
 
 

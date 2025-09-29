@@ -26,7 +26,7 @@ let globalTimerId;
 // recupere les paramètres de l'URL de la page
 // pour le mode révision
  let urlParams = new URLSearchParams(window.location.search);
-//  verifie si le mode révision est activé
+//  verifcation if  mode révision est true
 let revisionMode = urlParams.get("mode") === "revision";
     // afiches lesquestions et les options:
     function showQuestion(i) {
@@ -66,12 +66,9 @@ async function main() {
     else{
          questions = await fetchData(theme); 
     }
-   
-
+  
          totalQuestions=questions.length;
-         nameCategory.innerHTML=theme;
-      
-         
+         nameCategory.textContent=theme;     
           TimeGlobal=questions.reduce((total ,q) => {
   return total += q.time;
 }, 0);
@@ -88,9 +85,6 @@ async function main() {
 
  function validateAnswer(auto = false) {
   clearInterval(questionTimerId);
-  
- 
-   
     let selected = [];
     const answeroption = container.querySelectorAll('input[name="option"]');
 
@@ -101,6 +95,11 @@ async function main() {
          
         }
       }); 
+       if (selected.length === 0) {
+      alert("Veuillez choisir au moins une réponse !");
+      return;   
+      // ne pas continuer si aucune reponse n est selectionnee
+    }
        answerQuestions.push(selected);
     }
    
@@ -145,14 +144,7 @@ async function main() {
         answerUser:answerQuestions
       };
      
-       
-        try{
- saveQuizResult(result);
-        }
-        catch(error){
-          console.error("Error saving quiz result", error);
-        }
-      
+ saveQuizResult(result); 
       next.style.display = "none";
       window.location.href = "History.html";
     }
